@@ -4,6 +4,10 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Client" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Server" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/Client/Controller" />
+      <excludeFolder url="file://$MODULE_DIR$/Client/Service" />
+      <excludeFolder url="file://$MODULE_DIR$/Server/DAO" />
+      <excludeFolder url="file://$MODULE_DIR$/Server/Service" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
