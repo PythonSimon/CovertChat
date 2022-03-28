@@ -13,7 +13,8 @@ class LoginFrame(BaseFrame):
             "秘信",
             r"Resource\MainIcon.png",
             warn=False,
-            backgroundColor="rgb(239,252,255)"
+            backgroundColor="rgb(239,252,255)",
+            style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | STAY_ON_TOP
         )
 
         self.main()

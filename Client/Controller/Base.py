@@ -7,8 +7,9 @@ from wx import *
 
 class BaseFrame(Frame):
 
-    def __init__(self, size, title, icon, warn=True, closingWarning="确认关闭？", window="default", backgroundColor="GREY"):
-        super(BaseFrame, self).__init__(parent=None, title=title, size=size, style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX)
+    def __init__(self, size, title, icon, warn=True, closingWarning="确认关闭？", parent=None,
+                 window="default", backgroundColor="GREY", style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX):
+        super(BaseFrame, self).__init__(parent=parent, title=title, size=size, style=style)
 
         self.closingWarning = closingWarning
         self.warn = warn
