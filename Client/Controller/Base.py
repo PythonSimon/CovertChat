@@ -7,11 +7,11 @@ from wx import *
 
 class BaseFrame(Frame):
 
-    def __init__(self, size, title, icon, closingWarning="确认关闭？", window="default", backgroundColor="GREY"):
+    def __init__(self, size, title, icon, warn=True, closingWarning="确认关闭？", window="default", backgroundColor="GREY"):
         super(BaseFrame, self).__init__(parent=None, title=title, size=size, style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX)
 
         self.closingWarning = closingWarning
-        self.warn = True
+        self.warn = warn
 
         if window == "default":
             self.panel = Panel(parent=self)
