@@ -20,4 +20,5 @@ class LoginFrame(BaseFrame):
         self.main()
 
     def main(self):
-        pass
+        topImageBitmap = Bitmap(r"Resource\LoginTop.png", BITMAP_TYPE_PNG)
+        topImage = StaticBitmap(self.panel, bitmap=topImageBitmap)
