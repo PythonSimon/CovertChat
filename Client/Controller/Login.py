@@ -21,6 +21,8 @@ class LoginFrame(BaseFrame):
         self.main()
 
     def main(self):
+        sizer = BoxSizer(VERTICAL)
+
         inputPanel = Panel(self.panel, style=BORDER_DOUBLE)
 
         inputSizer = FlexGridSizer(2, 2, vgap=0, hgap=10)
@@ -49,3 +51,9 @@ class LoginFrame(BaseFrame):
         inputPanel.SetSizer(inputSizer)
 
         inputPanel.Layout()
+
+        sizer.Add(inputPanel, flag=EXPAND)
+
+        self.panel.SetSizer(sizer)
+
+        self.panel.Layout()
