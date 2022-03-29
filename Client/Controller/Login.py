@@ -76,3 +76,12 @@ class LoginFrame(BaseFrame):
         self.SetMinSize((350, 220))
         self.SetMaxSize((350, 220))
         self.panel.Layout()
+
+        self.Bind(EVT_BUTTON, handler=self.register, id=REGISTER)
+        self.Bind(EVT_BUTTON, handler=self.login, id=LOGIN)
+
+    def register(self, event):
+        pass
+
+    def login(self, event):
+        pass
