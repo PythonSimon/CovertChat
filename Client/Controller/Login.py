@@ -47,9 +47,9 @@ class LoginFrame(BaseFrame):
         passwordCtrl.SetFont(defaultFont)
 
         inputSizer.Add(emailText, flag=ALIGN_CENTER)
-        inputSizer.Add(emailCtrl, flag=ALIGN_CENTER | SHAPED | ALL, border=10)
+        inputSizer.Add(emailCtrl, flag=SHAPED | ALL, border=10)
         inputSizer.Add(passwordText, flag=ALIGN_CENTER)
-        inputSizer.Add(passwordCtrl, flag=ALIGN_CENTER | SHAPED | ALL, border=10)
+        inputSizer.Add(passwordCtrl, flag=SHAPED | ALL, border=10)
 
         inputPanel.SetSizer(inputSizer)
 
@@ -64,7 +64,11 @@ class LoginFrame(BaseFrame):
         registerButton.SetFont(defaultFont)
         loginButton.SetFont(defaultFont)
 
+        buttonSizer.Add(registerButton, flag=SHAPED | ALL, border=10)
+        buttonSizer.Add(loginButton, flag=SHAPED | ALL, border=10)
+
         sizer.Add(inputPanel, flag=EXPAND)
+        sizer.Add(buttonSizer, flag=EXPAND)
 
         self.panel.SetSizer(sizer)
 
