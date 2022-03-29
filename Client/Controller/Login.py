@@ -3,6 +3,7 @@
 from wx import *
 
 from .Base import BaseFrame
+from .Register import RegisterFrame
 
 REGISTER = 1
 LOGIN = 2
@@ -19,6 +20,8 @@ class LoginFrame(BaseFrame):
             backgroundColor="#F5F8F9",
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | STAY_ON_TOP
         )
+
+        self.globals = {}
 
         self.main()
 
@@ -39,6 +42,9 @@ class LoginFrame(BaseFrame):
         emailCtrl = TextCtrl(inputPanel)
         passwordText = StaticText(inputPanel, label="密码")
         passwordCtrl = TextCtrl(inputPanel)
+
+        self.globals["email"] = emailCtrl
+        self.globals["password"] = passwordCtrl
 
         emailText.SetFont(defaultFont)
         emailCtrl.SetFont(defaultFont)
@@ -81,7 +87,10 @@ class LoginFrame(BaseFrame):
         self.Bind(EVT_BUTTON, handler=self.login, id=LOGIN)
 
     def register(self, event):
-        pass
+        RegisterFrame(
+            self,
+            self.globals["emails"].GetValue()
+        ).Show()
 
     def login(self, event):
         pass
