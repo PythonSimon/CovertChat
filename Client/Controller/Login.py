@@ -12,11 +12,10 @@ class LoginFrame(BaseFrame):
 
     def __init__(self):
         super(LoginFrame, self).__init__(
-            (455, 340),
+            (350, 220),
             "秘信",
             r"Resource\MainIcon.png",
             warn=False,
-            waveSize=(0, 0),
             backgroundColor="#F5F8F9",
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | STAY_ON_TOP
         )
@@ -39,7 +38,7 @@ class LoginFrame(BaseFrame):
         emailText = StaticText(inputPanel, label="邮箱")
         emailCtrl = TextCtrl(inputPanel)
         passwordText = StaticText(inputPanel, label="密码")
-        passwordCtrl = TextCtrl(inputPanel, style=TE_PASSWORD)
+        passwordCtrl = TextCtrl(inputPanel)
 
         emailText.SetFont(defaultFont)
         emailCtrl.SetFont(defaultFont)
@@ -64,12 +63,16 @@ class LoginFrame(BaseFrame):
         registerButton.SetFont(defaultFont)
         loginButton.SetFont(defaultFont)
 
-        buttonSizer.Add(registerButton, flag=SHAPED | ALL, border=10)
-        buttonSizer.Add(loginButton, flag=SHAPED | ALL, border=10)
+        buttonSizer.Add(registerButton, flag=ALIGN_CENTER | SHAPED | RIGHT, border=15)
+        buttonSizer.Add(loginButton, flag=ALIGN_CENTER | SHAPED | LEFT, border=15)
 
-        sizer.Add(inputPanel, flag=EXPAND)
-        sizer.Add(buttonSizer, flag=EXPAND)
+        sizer.Add(inputPanel, flag=EXPAND | ALL, border=20)
+        sizer.Add(buttonSizer, flag=ALIGN_CENTER | SHAPED)
 
         self.panel.SetSizer(sizer)
 
+        self.SetSize((0, 0))
+        self.SetSize((350, 220))
+        self.SetMinSize((350, 220))
+        self.SetMaxSize((350, 220))
         self.panel.Layout()
