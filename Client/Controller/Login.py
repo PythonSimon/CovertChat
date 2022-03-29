@@ -23,7 +23,7 @@ class LoginFrame(BaseFrame):
     def main(self):
         inputPanel = Panel(self.panel, style=BORDER_DOUBLE)
 
-        inputSizer = FlexGridSizer(2, 2, vgap=10, hgap=10)
+        inputSizer = FlexGridSizer(2, 2, vgap=0, hgap=10)
 
         inputSizer.AddGrowableRow(0, 1)
         inputSizer.AddGrowableRow(1, 1)
@@ -40,3 +40,12 @@ class LoginFrame(BaseFrame):
         emailCtrl.SetFont(defaultFont)
         passwordText.SetFont(defaultFont)
         passwordCtrl.SetFont(defaultFont)
+
+        inputSizer.Add(emailText, flag=ALIGN_CENTER)
+        inputSizer.Add(emailCtrl, flag=ALIGN_CENTER | SHAPED | ALL, border=10)
+        inputSizer.Add(passwordText, flag=ALIGN_CENTER)
+        inputSizer.Add(passwordCtrl, flag=ALIGN_CENTER | SHAPED | ALL, border=10)
+
+        inputPanel.SetSizer(inputSizer)
+
+        inputPanel.Layout()
