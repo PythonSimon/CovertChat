@@ -30,7 +30,13 @@ class LoginFrame(BaseFrame):
         inputSizer.AddGrowableCol(0, 1)
         inputSizer.AddGrowableCol(1, 2)
 
+        defaultFont = Font(Font(10, SCRIPT, NORMAL, NORMAL, False))
         emailText = StaticText(inputPanel, label="邮箱")
         emailCtrl = TextCtrl(inputPanel)
         passwordText = StaticText(inputPanel, label="密码")
         passwordCtrl = TextCtrl(inputPanel, style=TE_PASSWORD)
+
+        emailText.SetFont(defaultFont)
+        emailCtrl.SetFont(defaultFont)
+        passwordText.SetFont(defaultFont)
+        passwordCtrl.SetFont(defaultFont)
