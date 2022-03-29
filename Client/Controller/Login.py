@@ -25,7 +25,12 @@ class LoginFrame(BaseFrame):
 
         inputSizer = FlexGridSizer(2, 2, vgap=10, hgap=10)
 
+        inputSizer.AddGrowableRow(0, 1)
+        inputSizer.AddGrowableRow(1, 1)
+        inputSizer.AddGrowableCol(0, 1)
+        inputSizer.AddGrowableCol(1, 2)
+
         emailText = StaticText(inputPanel, label="邮箱")
         emailCtrl = TextCtrl(inputPanel)
         passwordText = StaticText(inputPanel, label="密码")
-        ppaswordCtrl = TextCtrl(inputPanel, style=TE_PASSWORD)
+        passwordCtrl = TextCtrl(inputPanel, style=TE_PASSWORD)
