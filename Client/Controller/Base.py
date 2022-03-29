@@ -7,7 +7,7 @@ from wx import *
 
 class BaseFrame(Frame):
 
-    def __init__(self, size, title, icon, warn=True, closingWarning="确认关闭？", parent=None,
+    def __init__(self, size, title, icon, warn=True, closingWarning="确认关闭？", parent=None, waveSize=(-1, -1),
                  window="default", backgroundColor="GREY", style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX):
         super(BaseFrame, self).__init__(parent=parent, title=title, size=size, style=style)
 
@@ -34,6 +34,11 @@ class BaseFrame(Frame):
         self.Center()
         self.SetBackgroundColour(backgroundColor)
         self.SetIcon(icon)
+
+        if -1 not in waveSize:
+            self.SetMinSize((size[0] - waveSize[0], size[1] - waveSize[1]))
+            self.SetMaxSize((size[0] + waveSize[0], size[1] + waveSize[1]))
+
         self.Bind(EVT_CLOSE, self.onClose)
 
     def onClose(self, event):

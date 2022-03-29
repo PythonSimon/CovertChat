@@ -13,12 +13,12 @@ class LoginFrame(BaseFrame):
             "秘信",
             r"Resource\MainIcon.png",
             warn=False,
-            backgroundColor="rgb(239,252,255)",
+            waveSize=(0, 0),
+            backgroundColor="#F5F8F9",
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | STAY_ON_TOP
         )
 
         self.main()
 
     def main(self):
-        topImageBitmap = Bitmap(r"Resource\LoginTop.png", BITMAP_TYPE_PNG)
-        topImage = StaticBitmap(self.panel, bitmap=topImageBitmap)
+        pass
