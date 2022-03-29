@@ -21,4 +21,11 @@ class LoginFrame(BaseFrame):
         self.main()
 
     def main(self):
-        pass
+        inputPanel = Panel(self.panel, style=BORDER_DOUBLE)
+
+        inputSizer = FlexGridSizer(2, 2, vgap=10, hgap=10)
+
+        emailText = StaticText(inputPanel, label="邮箱")
+        emailCtrl = TextCtrl(inputPanel)
+        passwordText = StaticText(inputPanel, label="密码")
+        ppaswordCtrl = TextCtrl(inputPanel, style=TE_PASSWORD)
