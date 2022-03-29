@@ -4,6 +4,9 @@ from wx import *
 
 from .Base import BaseFrame
 
+REGISTER = 1
+LOGIN = 2
+
 
 class LoginFrame(BaseFrame):
 
@@ -51,6 +54,15 @@ class LoginFrame(BaseFrame):
         inputPanel.SetSizer(inputSizer)
 
         inputPanel.Layout()
+
+        buttonSizer = BoxSizer(HORIZONTAL)
+
+        defaultFont = Font(Font(12, SCRIPT, NORMAL, NORMAL, False))
+        registerButton = Button(self.panel, id=REGISTER, label="注册")
+        loginButton = Button(self.panel, id=LOGIN, label="登录")
+
+        registerButton.SetFont(defaultFont)
+        loginButton.SetFont(defaultFont)
 
         sizer.Add(inputPanel, flag=EXPAND)
 
