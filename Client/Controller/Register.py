@@ -90,3 +90,6 @@ class RegisterFrame(BaseFrame):
         self.SetMinSize((340, 530))
         self.SetMaxSize((340, 530))
         self.panel.Layout()
+
+    def onClose(self, event):
+        self.Hide()
