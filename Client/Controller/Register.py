@@ -18,6 +18,8 @@ class RegisterFrame(BaseFrame):
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | FRAME_FLOAT_ON_PARENT
         )
 
+        self.email = email
+
         self.main()
 
     def main(self):
@@ -38,6 +40,16 @@ class RegisterFrame(BaseFrame):
         inputSizer.AddGrowableRow(4, 1)
         inputSizer.AddGrowableCol(0, 1)
         inputSizer.AddGrowableCol(1, 2)
+
+        nameText = StaticText(inputPanel, label="昵称")
+        nameCtrl = TextCtrl(inputPanel)
+        passwordText = StaticText(inputPanel, labell="密码")
+        passwordCtrl = TextCtrl(inputPanel)
+        password2Text = StaticText(inputPanel, label="备用密码")
+        emailText = StaticText(inputPanel, label="QQ邮箱")
+        emailCtrl = TextCtrl(inputPanel, value=self.email)
+        codeText = StaticText(inputPanel, label="验证码")
+        codeCtrl = TextCtrl(inputPanel)
 
         inputPanel.SetSizer(inputSizer)
 
