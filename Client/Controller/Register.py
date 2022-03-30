@@ -27,6 +27,14 @@ class RegisterFrame(BaseFrame):
 
         inputSizer = FlexGridSizer(5, 2, vgap=15, hgap=10)
 
+        inputSizer.AddGrowableRow(0, 1)
+        inputSizer.AddGrowableRow(1, 1)
+        inputSizer.AddGrowableRow(2, 1)
+        inputSizer.AddGrowableRow(3, 1)
+        inputSizer.AddGrowableRow(4, 1)
+        inputSizer.AddGrowableCol(0, 1)
+        inputSizer.AddGrowableCol(1, 2)
+
         inputPanel.SetSizer(inputSizer)
 
         inputPanel.Layout()
