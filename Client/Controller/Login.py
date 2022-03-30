@@ -35,11 +35,11 @@ class LoginFrame(BaseFrame):
         inputSizer.AddGrowableCol(0, 1)
         inputSizer.AddGrowableCol(1, 2)
 
-        defaultFont = Font(Font(10, SCRIPT, NORMAL, NORMAL, False))
+        defaultFont = Font(10, SCRIPT, NORMAL, NORMAL, False)
         emailText = StaticText(inputPanel, label="邮箱")
         emailCtrl = TextCtrl(inputPanel)
         passwordText = StaticText(inputPanel, label="密码")
-        passwordCtrl = TextCtrl(inputPanel)
+        passwordCtrl = TextCtrl(inputPanel, style=TE_PASSWORD)
 
         self.globals["email"] = emailCtrl
         self.globals["password"] = passwordCtrl
@@ -60,7 +60,7 @@ class LoginFrame(BaseFrame):
 
         buttonSizer = BoxSizer(HORIZONTAL)
 
-        defaultFont = Font(Font(12, SCRIPT, NORMAL, NORMAL, False))
+        defaultFont = Font(12, SCRIPT, NORMAL, NORMAL, False)
         registerButton = Button(self.panel, id=REGISTER, label="注册")
         loginButton = Button(self.panel, id=LOGIN, label="登录")
 
@@ -87,7 +87,7 @@ class LoginFrame(BaseFrame):
     def register(self, event):
         RegisterFrame(
             self,
-            self.globals["emails"].GetValue()
+            self.globals["email"].GetValue()
         ).Show()
 
     def login(self, event):

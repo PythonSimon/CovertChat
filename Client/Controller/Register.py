@@ -2,7 +2,7 @@
 
 from wx import *
 
-from .Base import *
+from .Base import BaseFrame
 
 
 class RegisterFrame(BaseFrame):
@@ -23,6 +23,10 @@ class RegisterFrame(BaseFrame):
     def main(self):
         sizer = BoxSizer(VERTICAL)
 
+        titleText = StaticText(self.panel, label="注册")
+
+        titleText.SetFont(Font(15, SCRIPT, NORMAL, BOLD, False))
+
         inputPanel = Panel(self.panel, style=BORDER_DOUBLE)
 
         inputSizer = FlexGridSizer(5, 2, vgap=15, hgap=10)
@@ -39,7 +43,8 @@ class RegisterFrame(BaseFrame):
 
         inputPanel.Layout()
 
-        sizer.Add(inputPanel, glag=EXPAND | ALL, border=20)
+        sizer.Add(titleText, flag=ALIGN_CENTER | ALL, border=10)
+        sizer.Add(inputPanel, flag=EXPAND | ALL, border=20)
 
         self.panel.SetSizer(sizer)
 
