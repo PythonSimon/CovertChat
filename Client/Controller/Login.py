@@ -21,8 +21,6 @@ class LoginFrame(BaseFrame):
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | STAY_ON_TOP
         )
 
-        self.globals = {}
-
         self.main()
 
     def main(self):

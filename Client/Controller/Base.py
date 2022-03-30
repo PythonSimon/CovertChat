@@ -13,6 +13,7 @@ class BaseFrame(Frame):
 
         self.closingWarning = closingWarning
         self.warn = warn
+        self.globals = {}
 
         if window == "default":
             self.panel = Panel(parent=self)

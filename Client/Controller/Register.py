@@ -17,3 +17,8 @@ class RegisterFrame(BaseFrame):
             backgroundColor="#F5F8F9",
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | FRAME_FLOAT_ON_PARENT
         )
+
+        self.main()
+
+    def main(self):
+        pass
