@@ -21,4 +21,22 @@ class RegisterFrame(BaseFrame):
         self.main()
 
     def main(self):
-        pass
+        sizer = BoxSizer(VERTICAL)
+
+        inputPanel = Panel(self.panel, style=BORDER_DOUBLE)
+
+        inputSizer = FlexGridSizer(5, 2, vgap=15, hgap=10)
+
+        inputPanel.SetSizer(inputSizer)
+
+        inputPanel.Layout()
+
+        sizer.Add(inputPanel, glag=EXPAND | ALL, border=20)
+
+        self.panel.SetSizer(sizer)
+
+        self.SetSize((0, 0))
+        self.SetSize((340, 530))
+        self.SetMinSize((340, 530))
+        self.SetMaxSize((340, 530))
+        self.panel.Layout()
