@@ -80,8 +80,11 @@ class RegisterFrame(BaseFrame):
 
         inputPanel.Layout()
 
+        controlSizer = BoxSizer(HORIZONTAL)
+
         sizer.Add(titleText, flag=ALIGN_CENTER | ALL, border=10)
         sizer.Add(inputPanel, flag=EXPAND | ALL, border=20)
+        sizer.Add(controlSizer, flag=ALIGN_CENTER | EXPAND)
 
         self.panel.SetSizer(sizer)
 
