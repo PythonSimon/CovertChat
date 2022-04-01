@@ -4,6 +4,9 @@ from wx import *
 
 from .Base import BaseFrame
 
+GET_CODE = 1
+REGISTER = 2
+
 
 class RegisterFrame(BaseFrame):
 
@@ -80,11 +83,14 @@ class RegisterFrame(BaseFrame):
 
         inputPanel.Layout()
 
-        controlSizer = BoxSizer(HORIZONTAL)
+        buttonSizer = BoxSizer(HORIZONTAL)
+
+        getCodeButton = Button(self.panel, label="获取验证码")
+        registerButton = Button(self.panel, label="注册")
 
         sizer.Add(titleText, flag=ALIGN_CENTER | ALL, border=10)
         sizer.Add(inputPanel, flag=EXPAND | ALL, border=20)
-        sizer.Add(controlSizer, flag=ALIGN_CENTER | EXPAND)
+        sizer.Add(buttonSizer, flag=ALIGN_CENTER)
 
         self.panel.SetSizer(sizer)
 
