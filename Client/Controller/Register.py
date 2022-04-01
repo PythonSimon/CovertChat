@@ -12,7 +12,7 @@ class RegisterFrame(BaseFrame):
 
     def __init__(self, parent, email):
         super(RegisterFrame, self).__init__(
-            (340, 530),
+            (340, 475),
             "秘信",
             r"Resource\MainIcon.png",
             parent=parent,
@@ -98,9 +98,9 @@ class RegisterFrame(BaseFrame):
         self.panel.SetSizer(sizer)
 
         self.SetSize((0, 0))
-        self.SetSize((340, 530))
-        self.SetMinSize((340, 530))
-        self.SetMaxSize((340, 530))
+        self.SetSize(self.size)
+        self.SetMinSize(self.size)
+        self.SetMaxSize(self.size)
         self.panel.Layout()
 
     def onClose(self, event):

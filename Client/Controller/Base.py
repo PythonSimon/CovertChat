@@ -15,6 +15,8 @@ class BaseFrame(Frame):
         self.warn = warn
         self.globals = {}
 
+        self.size = size
+
         if window == "default":
             self.panel = Panel(parent=self)
         elif window == "split-v":
