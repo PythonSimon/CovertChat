@@ -88,8 +88,8 @@ class RegisterFrame(BaseFrame):
         getCodeButton = Button(self.panel, label="获取验证码")
         registerButton = Button(self.panel, label="注册")
 
-        buttonSizer.Add(getCodeButton, flag=RIGHT, border=15)
-        buttonSizer.Add(registerButton, flag=LEFT, border=15)
+        buttonSizer.Add(getCodeButton, id=GET_CODE, flag=RIGHT, border=15)
+        buttonSizer.Add(registerButton, id=REGISTER, flag=LEFT, border=15)
 
         sizer.Add(titleText, flag=ALIGN_CENTER | ALL, border=10)
         sizer.Add(inputPanel, flag=EXPAND | ALL, border=20)
@@ -102,6 +102,15 @@ class RegisterFrame(BaseFrame):
         self.SetMinSize(self.size)
         self.SetMaxSize(self.size)
         self.panel.Layout()
+
+        self.Bind(EVT_BUTTON, handler=self.getCode, id=GET_CODE)
+        self.Bind(EVT_BUTTON, handler=self.register, id=REGISTER)
+
+    def getCode(self, event):
+        pass
+
+    def register(self, event):
+        pass
 
     def onClose(self, event):
         self.Hide()
