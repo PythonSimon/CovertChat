@@ -88,6 +88,9 @@ class RegisterFrame(BaseFrame):
         getCodeButton = Button(self.panel, label="获取验证码")
         registerButton = Button(self.panel, label="注册")
 
+        buttonSizer.Add(getCodeButton, flag=RIGHT, border=15)
+        buttonSizer.Add(registerButton, flag=LEFT, border=15)
+
         sizer.Add(titleText, flag=ALIGN_CENTER | ALL, border=10)
         sizer.Add(inputPanel, flag=EXPAND | ALL, border=20)
         sizer.Add(buttonSizer, flag=ALIGN_CENTER)
