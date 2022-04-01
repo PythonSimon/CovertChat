@@ -56,6 +56,12 @@ class RegisterFrame(BaseFrame):
         codeText = StaticText(inputPanel, label="验证码")
         codeCtrl = TextCtrl(inputPanel)
 
+        self.globals["name"] = nameCtrl
+        self.globals["password"] = passwordCtrl
+        self.globals["password2"] = password2Ctrl
+        self.globals["email"] = emailCtrl
+        self.globals["code"] = codeCtrl
+
         nameText.SetFont(defaultFont)
         nameCtrl.SetFont(defaultFont)
         passwordText.SetFont(defaultFont)
@@ -110,6 +116,12 @@ class RegisterFrame(BaseFrame):
         pass
 
     def register(self, event):
+        name = self.globals["name"].GetValue()
+        password = self.globals["password"].GetValue()
+        password2 = self.globals["password2"].GetValue()
+        email = self.globals["email"].GetValue()
+        code = self.globals["code"].GetValue()
+
         pass
 
     def onClose(self, event):
