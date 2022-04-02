@@ -4,7 +4,7 @@ from re import *
 from wx import *
 
 from .Base import BaseFrame
-from ..Service.RegisterService import sendCode
+from Client.Service.RegisterService import sendCode
 
 GET_CODE = 21
 REGISTER = 22
@@ -116,6 +116,12 @@ class RegisterFrame(BaseFrame):
 
         if search(r"\w+@.+\..+", email):
             self.code = sendCode(email)
+
+            if self.code == -1:
+                faiLed = MessageDialog(None, "验证码发送失败，请检查邮箱及网络情况！", caption="发送失败", style=OK | ICON_ERROR)
+                faiLed.ShowModal()
+        else:
+            mistake = MessageDialog(None, "邮箱填写有误！", caption="无法发送", style=OK | ICON_ERROR)
 
     def register(self, event):
         name = self.globals["name"].GetValue()
