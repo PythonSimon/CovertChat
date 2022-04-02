@@ -1,10 +1,10 @@
 # coding=utf-8
 
-from time import *
-from threading import *
+from re import *
 from wx import *
 
 from .Base import BaseFrame
+from ..Service.RegisterService import sendCode
 
 GET_CODE = 21
 REGISTER = 22
@@ -24,6 +24,7 @@ class RegisterFrame(BaseFrame):
         )
 
         self.email = email
+        self.code = ""
 
         self.main()
 
@@ -53,7 +54,7 @@ class RegisterFrame(BaseFrame):
         passwordCtrl = TextCtrl(inputPanel)
         password2Text = StaticText(inputPanel, label="备用密码")
         password2Ctrl = TextCtrl(inputPanel)
-        emailText = StaticText(inputPanel, label="QQ邮箱")
+        emailText = StaticText(inputPanel, label="邮箱")
         emailCtrl = TextCtrl(inputPanel)
         getCode = Button(inputPanel, id=GET_CODE, label="获取验证码", style=BORDER_NONE)
         codeCtrl = TextCtrl(inputPanel)
@@ -111,7 +112,10 @@ class RegisterFrame(BaseFrame):
         self.Bind(EVT_BUTTON, handler=self.register, id=REGISTER)
 
     def getCode(self, event):
-        pass
+        email = self.globals["email"].GetValue()
+
+        if search(r"\w+@.+\..+", email):
+            self.code = sendCode(email)
 
     def register(self, event):
         name = self.globals["name"].GetValue()

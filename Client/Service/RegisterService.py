@@ -20,5 +20,7 @@ def sendCode(email):
         server.login("8178778@qq.com", "akobqoctiqojcaic")
 
         server.sendmail("@qq.com", email, message.as_string())
+
+        return code
     except SMTPException:
         return -1
