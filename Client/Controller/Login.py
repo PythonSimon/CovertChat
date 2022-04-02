@@ -5,8 +5,8 @@ from wx import *
 from .Base import BaseFrame
 from .Register import RegisterFrame
 
-REGISTER = 1
-LOGIN = 2
+REGISTER = 11
+LOGIN = 12
 
 
 class LoginFrame(BaseFrame):

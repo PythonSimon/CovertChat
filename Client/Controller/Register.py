@@ -4,8 +4,8 @@ from wx import *
 
 from .Base import BaseFrame
 
-GET_CODE = 1
-REGISTER = 2
+GET_CODE = 21
+REGISTER = 22
 
 
 class RegisterFrame(BaseFrame):
@@ -53,7 +53,7 @@ class RegisterFrame(BaseFrame):
         password2Ctrl = TextCtrl(inputPanel)
         emailText = StaticText(inputPanel, label="QQ邮箱")
         emailCtrl = TextCtrl(inputPanel)
-        codeText = StaticText(inputPanel, label="验证码")
+        getCode = Button(inputPanel, id=GET_CODE, label="获取验证码", style=BORDER_NONE)
         codeCtrl = TextCtrl(inputPanel)
 
         self.globals["name"] = nameCtrl
@@ -71,7 +71,9 @@ class RegisterFrame(BaseFrame):
         emailText.SetFont(defaultFont)
         emailCtrl.SetFont(defaultFont)
         emailCtrl.SetValue(self.email)
-        codeText.SetFont(defaultFont)
+        getCode.SetFont(defaultFont)
+        getCode.SetForegroundColour("BLUE")
+        getCode.SetBackgroundColour(self.backgroundColor)
         codeCtrl.SetFont(defaultFont)
 
         inputSizer.Add(nameText, flag=ALIGN_CENTER)
@@ -82,7 +84,7 @@ class RegisterFrame(BaseFrame):
         inputSizer.Add(password2Ctrl, flag=SHAPED | ALL, border=10)
         inputSizer.Add(emailText, flag=ALIGN_CENTER)
         inputSizer.Add(emailCtrl, flag=SHAPED | ALL, border=10)
-        inputSizer.Add(codeText, flag=ALIGN_CENTER)
+        inputSizer.Add(getCode, flag=ALIGN_TOP | ALIGN_CENTER_HORIZONTAL | TOP, border=7)
         inputSizer.Add(codeCtrl, flag=SHAPED | ALL, border=10)
 
         inputPanel.SetSizer(inputSizer)
@@ -103,8 +105,13 @@ class RegisterFrame(BaseFrame):
         self.SetMaxSize(self.size)
         self.panel.Layout()
 
-        self.Bind(EVT_BUTTON, handler=self.getCode, id=GET_CODE)
-        self.Bind(EVT_BUTTON, handler=self.register, id=REGISTER)
+        self.Bind(EVT_CHILD_FOCUS, handler=self.focus, id=GET_CODE)
+        self.Bind(EVT_BUTTON, handler=self.focus, id=REGISTER)
+        # self.Bind(EVT_BUTTON, handler=self.getCode, id=GET_CODE)
+        # self.Bind(EVT_BUTTON, handler=self.register, id=REGISTER)
+
+    def focus(self, event):
+        print("ha")
 
     def getCode(self, event):
         pass
