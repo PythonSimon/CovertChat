@@ -89,17 +89,11 @@ class RegisterFrame(BaseFrame):
 
         inputPanel.Layout()
 
-        buttonSizer = BoxSizer(HORIZONTAL)
-
-        getCodeButton = Button(self.panel, label="获取验证码")
-        registerButton = Button(self.panel, label="注册")
-
-        buttonSizer.Add(getCodeButton, id=GET_CODE, flag=RIGHT, border=15)
-        buttonSizer.Add(registerButton, id=REGISTER, flag=LEFT, border=15)
+        registerButton = Button(self.panel, id=REGISTER, label="注册")
 
         sizer.Add(titleText, flag=ALIGN_CENTER | ALL, border=10)
         sizer.Add(inputPanel, flag=EXPAND | ALL, border=20)
-        sizer.Add(buttonSizer, flag=ALIGN_CENTER)
+        sizer.Add(registerButton, flag=EXPAND | LEFT | RIGHT | BOTTOM, border=25)
 
         self.panel.SetSizer(sizer)
 

@@ -11,11 +11,18 @@ class BaseFrame(Frame):
                  window="default", backgroundColor="GREY", style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX):
         super(BaseFrame, self).__init__(parent=parent, title=title, size=size, style=style)
 
-        self.closingWarning = closingWarning
-        self.warn = warn
         self.globals = {}
 
         self.size = size
+        self.title = title
+        self.icon = icon
+        self.warn = warn
+        self.closingWarning = closingWarning
+        self.parent = parent
+        self.waveSize = waveSize
+        self.window = window
+        self.backgroundColor = backgroundColor
+        self.style = style
 
         if window == "default":
             self.panel = Panel(parent=self)
