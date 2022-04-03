@@ -124,6 +124,7 @@ class RegisterFrame(BaseFrame):
                 faiLed.ShowModal()
         else:
             mistake = MessageDialog(None, "邮箱填写有误！", caption="无法发送", style=OK | ICON_ERROR)
+            mistake.ShowModal()
 
     def register(self, event):
         inputPanel = self.globals["inputPanel"]
@@ -133,15 +134,29 @@ class RegisterFrame(BaseFrame):
         email = self.globals["email"].GetValue()
         code = self.globals["code"].GetValue()
 
+        mistake = False
+
         if not search(r"^[^ ]+$", name):
             self.globals["name"].SetBackgroundColour("PINK")
             self.globals["name"].SetFocus()
 
             inputPanel.Layout()
-            
+
+            mistake = True
+        else:
+            self.globals["name"].SetBackgroundColour("WHITE")
+
+            inputPanel.Layout()
+
         if not search(r"^\w+$", password, flags=ASCII):
             self.globals["password"].SetBackgroundColour("PINK")
             self.globals["password"].SetFocus()
+
+            inputPanel.Layout()
+
+            mistake = True
+        else:
+            self.globals["password"].SetBackgroundColour("WHITE")
 
             inputPanel.Layout()
 
@@ -151,22 +166,38 @@ class RegisterFrame(BaseFrame):
 
             inputPanel.Layout()
 
+            mistake = True
+        else:
+            self.globals["password2"].SetBackgroundColour("WHITE")
+
+            inputPanel.Layout()
+
         if not search(r"^\w+@.+\..+$", email, flags=ASCII):
             self.globals["email"].SetBackgroundColour("PINK")
             self.globals["email"].SetFocus()
 
             inputPanel.Layout()
 
-        if self.code in ("", -1):
+            mistake = True
+        else:
+            self.globals["email"].SetBackgroundColour("WHITE")
+
+            inputPanel.Layout()
+
+        if self.code in ("", -1) or code != self.code:
             self.globals["code"].SetBackgroundColour("PINK")
             self.globals["code"].SetFocus()
 
             inputPanel.Layout()
-        elif code != self.code:
-            self.globals["code"].SetBackgroundColour("PINK")
-            self.globals["code"].SetFocus()
+
+            mistake = True
+        else:
+            self.globals["code"].SetBackgroundColour("WHITE")
 
             inputPanel.Layout()
+
+        if mistake:
+            mistake = MessageDialog(None, "信息填写有误，请根据红色指示改正！", caption="无法注册", style=OK | ICON_ERROR)
 
     def onClose(self, event):
         self.Hide()
