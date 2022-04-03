@@ -116,7 +116,7 @@ class RegisterFrame(BaseFrame):
     def getCode(self, event):
         email = self.globals["email"].GetValue()
 
-        if search(r"^\w+@.+\..+$", email):
+        if search(r"^\w+@\w+\.\w+$", email):
             self.code = sendCode(email)
 
             if self.code == -1:
@@ -172,7 +172,7 @@ class RegisterFrame(BaseFrame):
 
             inputPanel.Layout()
 
-        if not search(r"^\w+@.+\..+$", email, flags=ASCII):
+        if not search(r"^\w+@\w+\.\w+$", email, flags=ASCII):
             self.globals["email"].SetBackgroundColour("PINK")
             self.globals["email"].SetFocus()
 
@@ -198,6 +198,7 @@ class RegisterFrame(BaseFrame):
 
         if mistake:
             mistake = MessageDialog(None, "信息填写有误，请根据红色指示改正！", caption="无法注册", style=OK | ICON_ERROR)
+            mistake.ShowModal()
 
     def onClose(self, event):
         self.Hide()
