@@ -37,6 +37,8 @@ class RegisterFrame(BaseFrame):
 
         inputPanel = Panel(self.panel, style=BORDER_DOUBLE)
 
+        self.globals["inputPanel"] = inputPanel
+
         inputSizer = FlexGridSizer(5, 2, vgap=15, hgap=10)
 
         inputSizer.AddGrowableRow(0, 1)
@@ -114,7 +116,7 @@ class RegisterFrame(BaseFrame):
     def getCode(self, event):
         email = self.globals["email"].GetValue()
 
-        if search(r"\w+@.+\..+", email):
+        if search(r"^\w+@.+\..+$", email):
             self.code = sendCode(email)
 
             if self.code == -1:
@@ -124,13 +126,38 @@ class RegisterFrame(BaseFrame):
             mistake = MessageDialog(None, "邮箱填写有误！", caption="无法发送", style=OK | ICON_ERROR)
 
     def register(self, event):
+        inputPanel = self.globals["inputPanel"]
         name = self.globals["name"].GetValue()
         password = self.globals["password"].GetValue()
         password2 = self.globals["password2"].GetValue()
         email = self.globals["email"].GetValue()
         code = self.globals["code"].GetValue()
 
-        pass
+        if not search(r"^[^ ]+$", name):
+            self.globals["name"].SetBackgroundColour("PINK")
+            self.globals["name"].SetFocus()
+
+            inputPanel.Layout()
+        if not search(r"^\w+$", password, flags=ASCII):
+            self.globals["password"].SetBackgroundColour("PINK")
+            self.globals["password"].SetFocus()
+
+            inputPanel.Layout()
+        if not search(r"^\w+$", password2, flags=ASCII):
+            self.globals["password2"].SetBackgroundColour("PINK")
+            self.globals["password2"].SetFocus()
+
+            inputPanel.Layout()
+        if not search(r"^\w+@.+\..+$", email, flags=ASCII):
+            self.globals["email"].SetBackgroundColour("PINK")
+            self.globals["email"].SetFocus()
+
+            inputPanel.Layout()
+        if self.code in ("", -1):
+            self.globals["code"].SetBackgroundColour("PINK")
+            self.globals["code"].SetFocus()
+
+            inputPanel.Layout()
 
     def onClose(self, event):
         self.Hide()
