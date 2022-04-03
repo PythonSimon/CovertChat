@@ -138,22 +138,31 @@ class RegisterFrame(BaseFrame):
             self.globals["name"].SetFocus()
 
             inputPanel.Layout()
+            
         if not search(r"^\w+$", password, flags=ASCII):
             self.globals["password"].SetBackgroundColour("PINK")
             self.globals["password"].SetFocus()
 
             inputPanel.Layout()
+
         if not search(r"^\w+$", password2, flags=ASCII):
             self.globals["password2"].SetBackgroundColour("PINK")
             self.globals["password2"].SetFocus()
 
             inputPanel.Layout()
+
         if not search(r"^\w+@.+\..+$", email, flags=ASCII):
             self.globals["email"].SetBackgroundColour("PINK")
             self.globals["email"].SetFocus()
 
             inputPanel.Layout()
+
         if self.code in ("", -1):
+            self.globals["code"].SetBackgroundColour("PINK")
+            self.globals["code"].SetFocus()
+
+            inputPanel.Layout()
+        elif code != self.code:
             self.globals["code"].SetBackgroundColour("PINK")
             self.globals["code"].SetFocus()
 
