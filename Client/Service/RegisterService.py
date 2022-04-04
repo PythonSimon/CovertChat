@@ -3,6 +3,7 @@
 from email.mime.text import *
 from random import *
 from smtplib import *
+from socket import *
 
 
 def sendCode(email):
@@ -24,3 +25,7 @@ def sendCode(email):
         return code
     except SMTPException:
         return -1
+
+
+def register(email, name, password, password2):
+    pass

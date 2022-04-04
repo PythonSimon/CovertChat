@@ -4,7 +4,7 @@ from re import *
 from wx import *
 
 from .Base import BaseFrame
-from Client.Service.RegisterService import sendCode
+from Client.Service.RegisterService import sendCode, register
 
 GET_CODE = 21
 REGISTER = 22
@@ -199,6 +199,8 @@ class RegisterFrame(BaseFrame):
         if mistake:
             mistake = MessageDialog(None, "信息填写有误，请根据红色指示改正！", caption="无法注册", style=OK | ICON_ERROR)
             mistake.ShowModal()
+        else:
+            register(email, name, password, password2)
 
     def onClose(self, event):
         self.Hide()
