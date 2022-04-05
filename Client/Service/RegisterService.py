@@ -28,4 +28,4 @@ def sendCode(email):
 
 
 def register(email, name, password, password2):
-    pass
+    requestJ = {}
