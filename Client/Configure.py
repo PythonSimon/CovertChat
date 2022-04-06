@@ -1,6 +1,10 @@
 # coding=utf-8
 
 from enum import *
+from socket import *
+
+
+host = gethostbyname(gethostname)
 
 
 @unique
@@ -23,8 +27,14 @@ class RegisterResult(IntEnum):
     USER_EXIST = -32
 
 
+class Client(Enum):
+    CLIENT_IP = host
+    CLIENT_PORT = ""
+    CLIENT_ADDRESS = (CLIENT_IP, CLIENT_PORT)
+    client = socket(AF_INET, SOCK_DGRAM)
+
+
 class Server(Enum):
-    # FIXME 待填写
     SERVER_IP = "162.14.67.9"
     SERVER_SERVICE_PORT = "3305"
     SERVER_DAO_PORT = "3306"

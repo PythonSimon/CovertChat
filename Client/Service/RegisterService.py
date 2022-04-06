@@ -40,5 +40,3 @@ def register(email, name, password, password2):
         "password": password,
         "password2": password2
     })
-
-
