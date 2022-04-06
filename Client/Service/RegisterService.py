@@ -29,3 +29,5 @@ def sendCode(email):
 
 def register(email, name, password, password2):
     requestJ = {}
+
+    return (-22)

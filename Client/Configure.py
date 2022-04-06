@@ -8,13 +8,21 @@ class Command(IntEnum):
     LOGIN = 11
     SEND = 12
 
+
 @unique
-class Result(IntEnum):
+class LoginResult(IntEnum):
     SUCCESS = 21
-    FAIL = -22
+    USER_NONE = -22
+    PASSWORD_WRONG = -23
 
 
-class Server(IntEnum):
+@unique
+class RegisterResult(IntEnum):
+    SUCCESS = 31
+    USER_EXIST = -32
+
+
+class Server(Enum):
     # FIXME 待填写
     SERVER_IP = ""
     SERVER_SERVICE_PORT = 0
