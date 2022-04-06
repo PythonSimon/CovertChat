@@ -1,9 +1,12 @@
 # coding=utf-8
 
 from email.mime.text import *
+from json import *
 from random import *
 from smtplib import *
 from socket import *
+
+from Client.Configure import *
 
 
 def sendCode(email):
@@ -28,6 +31,14 @@ def sendCode(email):
 
 
 def register(email, name, password, password2):
-    requestJ = {}
+    client = socket(AF_INET, SOCK_DGRAM)
 
-    return (-22)
+    requestJ = dumps({
+        "command": Command.REGISTER,
+        "email": email,
+        "name": name,
+        "password": password,
+        "password2": password2
+    })
+
+

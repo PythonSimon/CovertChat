@@ -6,7 +6,8 @@ from enum import *
 @unique
 class Command(IntEnum):
     LOGIN = 11
-    SEND = 12
+    REGISTER = 12
+    SEND = 13
 
 
 @unique
@@ -24,8 +25,8 @@ class RegisterResult(IntEnum):
 
 class Server(Enum):
     # FIXME 待填写
-    SERVER_IP = ""
-    SERVER_SERVICE_PORT = 0
-    SERVER_DAO_PORT = 0
+    SERVER_IP = "162.14.67.9"
+    SERVER_SERVICE_PORT = "3305"
+    SERVER_DAO_PORT = "3306"
     SERVICE_ADDRESS = (SERVER_IP, SERVER_SERVICE_PORT)
     DAO_ADDRESS = (SERVER_IP, SERVER_DAO_PORT)
