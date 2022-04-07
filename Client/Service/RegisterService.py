@@ -31,7 +31,7 @@ def sendCode(email):
 
 
 def register(email, name, password, password2):
-    client = socket(AF_INET, SOCK_DGRAM)
+    client = Client.client
 
     requestJ = dumps({
         "command": Command.REGISTER,
@@ -40,3 +40,8 @@ def register(email, name, password, password2):
         "password": password,
         "password2": password2
     })
+
+    client.sendto(requestJ.encode(), Server.SERVICE_ADDRESS)
+
+    # try:
+    #     dataclasses
