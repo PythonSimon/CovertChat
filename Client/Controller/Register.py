@@ -84,8 +84,7 @@ class RegisterFrame(BaseFrame):
         getCode.SetColours("BLUE", "BLUE", "BLUE")
         getCode.SetUnderlines(False, False, False)
         getCode.OpenInSameWindow(True)
-        getCode.SetToolTip(ToolTip("验证码将被发送至填写的邮箱"))
-        print(getCode.GetSize())
+        getCode.SetToolTip(ToolTip(""))
         # getCode.SetForegroundColour("BLUE")
         # getCode.SetBackgroundColour(self.backgroundColor)
         codeCtrl.SetFont(defaultFont)
@@ -99,7 +98,7 @@ class RegisterFrame(BaseFrame):
         inputSizer.Add(emailText, flag=ALIGN_CENTER)
         inputSizer.Add(emailCtrl, flag=SHAPED | ALL, border=10)
         # inputSizer.Add(getCode, flag=ALIGN_TOP | ALIGN_CENTER_HORIZONTAL | TOP, border=7)
-        inputSizer.Add(getCode, flag=ALIGN_CENTER_VERTICAL | FIXED_MINSIZE)
+        inputSizer.Add(getCode)
         inputSizer.Add(codeCtrl, flag=SHAPED | ALL, border=10)
 
         inputPanel.SetSizer(inputSizer)
