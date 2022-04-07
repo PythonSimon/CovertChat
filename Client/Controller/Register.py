@@ -60,8 +60,7 @@ class RegisterFrame(BaseFrame):
         password2Ctrl = TextCtrl(inputPanel)
         emailText = StaticText(inputPanel, label="邮箱")
         emailCtrl = TextCtrl(inputPanel)
-        # getCode = Button(inputPanel, id=GET_CODE, label="获取验证码", style=BORDER_NONE)
-        getCode = HyperLinkCtrl(self.panel, id=GET_CODE, label="获取验证码")
+        getCode = HyperLinkCtrl(inputPanel, id=GET_CODE, label="获取验证码")
         codeCtrl = TextCtrl(inputPanel)
 
         self.globals["name"] = nameCtrl
@@ -81,12 +80,8 @@ class RegisterFrame(BaseFrame):
         emailCtrl.SetValue(self.email)
         getCode.SetFont(defaultFont)
         getCode.AutoBrowse(False)
-        getCode.SetColours("BLUE", "BLUE", "BLUE")
-        getCode.SetUnderlines(False, False, False)
         getCode.OpenInSameWindow(True)
         getCode.SetToolTip(ToolTip(""))
-        # getCode.SetForegroundColour("BLUE")
-        # getCode.SetBackgroundColour(self.backgroundColor)
         codeCtrl.SetFont(defaultFont)
 
         inputSizer.Add(nameText, flag=ALIGN_CENTER)
@@ -97,8 +92,7 @@ class RegisterFrame(BaseFrame):
         inputSizer.Add(password2Ctrl, flag=SHAPED | ALL, border=10)
         inputSizer.Add(emailText, flag=ALIGN_CENTER)
         inputSizer.Add(emailCtrl, flag=SHAPED | ALL, border=10)
-        # inputSizer.Add(getCode, flag=ALIGN_TOP | ALIGN_CENTER_HORIZONTAL | TOP, border=7)
-        inputSizer.Add(getCode)
+        inputSizer.Add(getCode, flag=ALIGN_CENTER)
         inputSizer.Add(codeCtrl, flag=SHAPED | ALL, border=10)
 
         inputPanel.SetSizer(inputSizer)
