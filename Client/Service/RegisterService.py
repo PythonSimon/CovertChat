@@ -21,9 +21,9 @@ def sendCode(email):
 
     try:
         server = SMTP("smtp.qq.com")
-        server.login("8178778@qq.com", "akobqoctiqojcaic")
+        server.login("8178778@qq.com", "ckhswaghontrbhgc")
 
-        server.sendmail("@qq.com", email, message.as_string())
+        server.sendmail("8178778@qq.com", email, message.as_string())
 
         return code
     except SMTPException:

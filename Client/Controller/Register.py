@@ -113,7 +113,7 @@ class RegisterFrame(BaseFrame):
         self.SetMaxSize(self.size)
         self.panel.Layout()
 
-        self.Bind(EVT_BUTTON, handler=self.getCode, id=GET_CODE)
+        self.Bind(EVT_HYPERLINK_LEFT, handler=self.getCode, id=GET_CODE)
         self.Bind(EVT_BUTTON, handler=self.register, id=REGISTER)
 
     def getCode(self, event):
