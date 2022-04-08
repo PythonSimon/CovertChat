@@ -21,6 +21,8 @@ class LoginFrame(BaseFrame):
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | STAY_ON_TOP
         )
 
+        self.registering = False
+
         self.main()
 
     def main(self):
@@ -85,10 +87,11 @@ class LoginFrame(BaseFrame):
         self.Bind(EVT_BUTTON, handler=self.login, id=LOGIN)
 
     def register(self, event):
-        RegisterFrame(
-            self,
-            self.globals["email"].GetValue()
-        ).Show()
+        if not self.registering:
+            RegisterFrame(
+                self,
+                self.globals["email"].GetValue()
+            ).Show()
 
     def login(self, event):
         pass

@@ -1,7 +1,6 @@
 # coding=utf-8
 
-import sys
-
+from os import *
 from wx import *
 
 
@@ -57,13 +56,13 @@ class BaseFrame(Frame):
 
             if warnMd.ShowModal() == ID_YES:
                 self.Destroy()
-                sys.exit(0)
+                _exit(0)
             else:
                 warnMd.Destroy()
         else:
             self.Destroy()
-            sys.exit(0)
+            _exit(0)
 
     def close(self, event=None):
         self.Destroy()
-        sys.exit(0)
+        _exit(0)

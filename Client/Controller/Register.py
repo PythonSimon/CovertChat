@@ -232,6 +232,7 @@ class RegisterFrame(BaseFrame):
                 self.globals["getCode"].SetFont(Font(10, SCRIPT, NORMAL, NORMAL, False))
 
                 self.oneMinute = False
+
             sleep(1)
 
     def onClose(self, event):
