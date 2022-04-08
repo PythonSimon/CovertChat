@@ -1,6 +1,8 @@
 # coding=utf-8
 
 from re import *
+from threading import *
+from time import *
 from wx import *
 from wx.lib.agw.hyperlink import *
 
@@ -27,6 +29,7 @@ class RegisterFrame(BaseFrame):
 
         self.email = email
         self.code = ""
+        self.oneMinute = False
 
         self.main()
 
@@ -68,6 +71,7 @@ class RegisterFrame(BaseFrame):
         self.globals["password2"] = password2Ctrl
         self.globals["email"] = emailCtrl
         self.globals["code"] = codeCtrl
+        self.globals["getCode"] = getCode
 
         nameText.SetFont(defaultFont)
         nameCtrl.SetFont(defaultFont)
@@ -79,6 +83,7 @@ class RegisterFrame(BaseFrame):
         emailCtrl.SetFont(defaultFont)
         emailCtrl.SetValue(self.email)
         getCode.SetFont(defaultFont)
+        getCode.SetForegroundColour("#5C686C")
         getCode.AutoBrowse(False)
         getCode.OpenInSameWindow(True)
         getCode.SetToolTip(ToolTip(""))
@@ -115,19 +120,23 @@ class RegisterFrame(BaseFrame):
 
         self.Bind(EVT_HYPERLINK_LEFT, handler=self.getCode, id=GET_CODE)
         self.Bind(EVT_BUTTON, handler=self.register, id=REGISTER)
+        Thread(target=self.wait).start()
 
     def getCode(self, event):
-        email = self.globals["email"].GetValue()
+        if not self.oneMinute:
+            email = self.globals["email"].GetValue()
 
-        if search(r"^\w+@\w+\.\w+$", email):
-            self.code = sendCode(email)
+            if search(r"^\w+@\w+\.\w+$", email):
+                self.code = sendCode(email)
 
-            if self.code == -1:
-                faiLed = MessageDialog(None, "验证码发送失败，请检查邮箱及网络情况！", caption="发送失败", style=OK | ICON_ERROR)
-                faiLed.ShowModal()
-        else:
-            mistake = MessageDialog(None, "邮箱填写有误！", caption="无法发送", style=OK | ICON_ERROR)
-            mistake.ShowModal()
+                if self.code == -1:
+                    faiLed = MessageDialog(None, "验证码发送失败，请检查邮箱及网络情况！", caption="发送失败", style=OK | ICON_ERROR)
+                    faiLed.ShowModal()
+                else:
+                    self.oneMinute = True
+            else:
+                mistake = MessageDialog(None, "邮箱填写有误！", caption="无法发送", style=OK | ICON_ERROR)
+                mistake.ShowModal()
 
     def register(self, event):
         inputPanel = self.globals["inputPanel"]
@@ -209,6 +218,21 @@ class RegisterFrame(BaseFrame):
                 pass
             elif result[0] == Result.FAIL:
                 fail = MessageDialog(None, "用户名或密码错误", caption="注册失败", style=OK | ICON_EXCLAMATION)
+
+    def wait(self):
+
+        while True:
+            if self.oneMinute:
+                for rest in range(60, 0, -1):
+                    self.globals["getCode"].SetLabel(f"{rest}秒后可重发")
+                    self.globals["getCode"].SetFont(Font(9, SCRIPT, NORMAL, NORMAL, False))
+                    sleep(1)
+
+                self.globals["getCode"].SetLabel("获取验证码")
+                self.globals["getCode"].SetFont(Font(10, SCRIPT, NORMAL, NORMAL, False))
+
+                self.oneMinute = False
+            sleep(1)
 
     def onClose(self, event):
         self.Hide()
