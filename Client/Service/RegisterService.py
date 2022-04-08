@@ -27,7 +27,7 @@ def sendCode(email):
 
         return code
     except SMTPException:
-        return -1
+        return RegisterResult.SEND_CODE_FAIL
 
 
 def register(email, name, password, password2):

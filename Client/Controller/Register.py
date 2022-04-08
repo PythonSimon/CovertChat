@@ -129,7 +129,7 @@ class RegisterFrame(BaseFrame):
             if search(r"^\w+@\w+\.\w+$", email):
                 self.code = sendCode(email)
 
-                if self.code == -1:
+                if self.code == RegisterResult.SEND_CODE_FAIL:
                     faiLed = MessageDialog(None, "验证码发送失败，请检查邮箱及网络情况！", caption="发送失败", style=OK | ICON_ERROR)
                     faiLed.ShowModal()
                 else:

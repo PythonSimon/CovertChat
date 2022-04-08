@@ -25,6 +25,7 @@ class LoginResult(IntEnum):
 class RegisterResult(IntEnum):
     SUCCESS = 31
     USER_EXIST = -32
+    SEND_CODE_FAIL = -33
 
 
 class Client(object):
