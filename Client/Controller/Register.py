@@ -214,9 +214,9 @@ class RegisterFrame(BaseFrame):
         else:
             result = register(email, name, password, password2)
 
-            if result[0] == Result.SUCCESS:
+            if result[0] == RegisterResult.SUCCESS:
                 pass
-            elif result[0] == Result.FAIL:
+            elif result[0] == RegisterResult.FAIL:
                 fail = MessageDialog(None, "用户名或密码错误", caption="注册失败", style=OK | ICON_EXCLAMATION)
 
     def wait(self):
