@@ -216,8 +216,9 @@ class RegisterFrame(BaseFrame):
 
             if result[0] == RegisterResult.SUCCESS:
                 pass
-            elif result[0] == RegisterResult.FAIL:
-                fail = MessageDialog(None, "用户名或密码错误", caption="注册失败", style=OK | ICON_EXCLAMATION)
+            elif result[0] == RegisterResult.USER_EXIST:
+                fail = MessageDialog(None, "邮箱已注册", caption="注册失败", style=OK | ICON_ERROR)
+                fail.ShowModal()
 
     def wait(self):
 
