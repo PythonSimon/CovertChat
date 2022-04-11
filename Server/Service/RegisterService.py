@@ -1,4 +1,4 @@
 # coding=utf-8
 
-def register(email, name, password, password2, client):
+def register(email, name, password, password2, client, serverSocket):
     pass

@@ -21,16 +21,16 @@ def receiveRegister():
             if command == Command.LOGIN:
                 email = command["email"]
                 password = command["password"]
-                login(email, password, address)
+                login(email, password, address, serverSocket)
             elif command == Command.REGISTER:
                 email = command["email"]
                 name = command["name"]
                 password = command["password"]
                 password2 = command["password2"]
-                register(email, name, password, password2, address)
+                register(email, name, password, password2, address, serverSocket)
             elif command == Command.SEND:
                 message = command["message"]
                 to = command["to"]
-                send(message, address, to)
+                send(message, address, to, serverSocket)
         except Exception:
             pass
