@@ -2,9 +2,9 @@
 
 from json import *
 from socket import *
-from .LoginService import *
-from .RegisterService import *
-from .SendService import *
+from .LoginService import login
+from .RegisterService import register
+from .SendService import send
 from Server.Configure import *
 
 
