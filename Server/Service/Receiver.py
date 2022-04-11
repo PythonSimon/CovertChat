@@ -10,7 +10,7 @@ from Server.Configure import *
 
 def receiveRegister():
     serverSocket = socket(AF_INET, SOCK_DGRAM)
-    serverSocket.bind(Server.SERVICE_ADDRESS)
+    serverSocket.bind(Server.SERVER_SERVICE_ADDRESS)
 
     while True:
         try:
