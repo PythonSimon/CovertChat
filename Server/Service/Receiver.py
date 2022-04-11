@@ -29,6 +29,8 @@ def receiveRegister():
                 password2 = command["password2"]
                 register(email, name, password, password2, address)
             elif command == Command.SEND:
-                pass
+                message = command["message"]
+                to = command["to"]
+                send(message, address, to)
         except Exception:
             pass
