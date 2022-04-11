@@ -19,9 +19,15 @@ def receiveRegister():
             command = data["command"]
 
             if command == Command.LOGIN:
-                pass
+                email = command["email"]
+                password = command["password"]
+                login(email, password, address)
             elif command == Command.REGISTER:
-                pass
+                email = command["email"]
+                name = command["name"]
+                password = command["password"]
+                password2 = command["password2"]
+                register(email, name, password, password2, address)
             elif command == Command.SEND:
                 pass
         except Exception:
