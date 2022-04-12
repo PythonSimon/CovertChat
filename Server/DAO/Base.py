@@ -8,7 +8,7 @@ from Server.Configure import *
 class BaseDAO(object):
 
     def __init__(self):
-        self.connect = connect(
+        self.connection = connect(
             host=Server.SERVER_IP,
             user=Server.DAO_USER,
             port=Server.SERVER_DAO_PORT,
@@ -18,4 +18,4 @@ class BaseDAO(object):
         )
 
     def close(self):
-        self.connect.close()
+        self.connection.close()
