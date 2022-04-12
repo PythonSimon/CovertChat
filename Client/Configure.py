@@ -24,8 +24,12 @@ class LoginResult(IntEnum):
 @unique
 class RegisterResult(IntEnum):
     SUCCESS = 31
-    USER_EXIST = -32
-    SEND_CODE_FAIL = -33
+    SEND_CODE_FAIL = -32
+
+
+@unique
+class UserDAO(IntEnum):
+    USER_NONE = -41
 
 
 class Client(object):

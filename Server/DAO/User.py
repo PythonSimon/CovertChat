@@ -14,7 +14,10 @@ class UserDAO(BaseDAO):
     def finUserByEmail(self, email):
         try:
             with self.connection.cursor() as cursor:
-                pass
+                sqlOrder = "select uid, email, name, password, password2, friends, avatar" \
+                           "from User where email=%s"
+                cursor.execute(sqlOrder, email)
+                user = cursor.fetchone()
         finally:
             self.close()
 
