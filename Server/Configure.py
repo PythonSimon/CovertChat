@@ -46,3 +46,5 @@ class Server(object):
     SERVER_DAO_ADDRESS = (SERVER_IP, SERVER_DAO_PORT)
     DAO_USER = "wanghaobo"
     DAO_PASSWORD = "wanghaobo_2009"
+    DAO_DATABASE = "CovertChat"
+    DAO_CHARSET = "utf8"

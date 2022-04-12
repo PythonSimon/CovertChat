@@ -10,5 +10,12 @@ class BaseDAO(object):
     def __init__(self):
         self.connect = connect(
             host=Server.SERVER_IP,
-            user=""
+            user=Server.DAO_USER,
+            port=Server.SERVER_DAO_PORT,
+            password=Server.DAO_PASSWORD,
+            database=Server.DAO_DATABASE,
+            charset=Server.DAO_CHARSET
         )
+
+    def close(self):
+        self.connect.close()
