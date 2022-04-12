@@ -44,7 +44,7 @@ class UserDAO(BaseDAO):
         finally:
             self.close()
 
-    def register(self, uid, email, password, password2, friends, avatar):
+    def register(self, uid, email, name, password, password2, friends, avatar):
         try:
             with self.connection.cursor() as cursor:
                 sql = "search email from EmailUser where email=%s"
@@ -53,10 +53,10 @@ class UserDAO(BaseDAO):
                 if user is not None:
                     return UserDAOResult.USER_EXIST
 
-                sql = "insert into UidUser (uid, email, password, password2, friends, avatar)" \
-                           "value (%s, %s, %s, %s, %s, %s)"
+                sql = "insert into UidUser (uid, email, name, password, password2, friends, avatar)" \
+                      "value (%s, %s, %s, %s, %s, %s %s)"
 
-                cursor.execute(sql, (uid, email, password, password2, friends, avatar))
+                cursor.execute(sql, (uid, email, name, password, password2, friends, avatar))
 
                 self.connection.commit()
 
