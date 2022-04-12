@@ -15,13 +15,15 @@ class UserDAO(BaseDAO):
         try:
             with self.connection.cursor() as cursor:
                 if "uid" in condition:
-                    sqlOrder = "select uid, email, name, password, password2, friends, avatar" \
+                    sql = "select uid, email, name, password, password2, friends, avatar" \
                                "from UidUser where uid = %s"
-                    cursor.execute(sqlOrder, condition["uid"])
+
+                    cursor.execute(sql, condition["uid"])
                 elif "email" in condition:
-                    sqlOrder = "select uid, email, name, password, password2, friends, avatar" \
+                    sql = "select uid, email, name, password, password2, friends, avatar" \
                                "from EmailUser where uid = %s"
-                    cursor.execute(sqlOrder, condition["uid"])
+
+                    cursor.execute(sql, condition["uid"])
 
                 result = cursor.fetchone()
 
@@ -39,5 +41,22 @@ class UserDAO(BaseDAO):
                     }
 
                     return user
+        finally:
+            self.close()
+
+    def register(self, uid, email, password, password2, friends, avatar):
+        try:
+            with self.connection.cursor() as cursor:
+                sql = "insert into UidUser (uid, email, password, password2, friends, avatar)" \
+                           "value (%s, %s, %s, %s, %s, %s)"
+
+                cursor.execute(sql, (uid, email, password, password2, friends, avatar))
+
+                self.connection.commit()
+
+        except DatabaseError:
+            self.connection.rollback()
+
+            return UserDAOResult.FAIL
         finally:
             self.close()

@@ -30,8 +30,10 @@ class RegisterResult(IntEnum):
 
 @unique
 class UserDAOResult(IntEnum):
-    USER_NONE = -41
-    USER_EXIST = -42
+    SUCCESS = 41
+    USER_NONE = -42
+    USER_EXIST = -43
+    FAIL = -44
 
 
 class Client(object):
