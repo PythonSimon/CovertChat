@@ -2,12 +2,11 @@
 
 from pymysql import *
 
+from .Base import BaseDAO
 from Server.Configure import *
 
 
-def register(uid, email, name, password, password2):
-    pass
-
-
-def findUser(uid):
-    pass
+class UserDAO(BaseDAO):
+    
+    def __init__(self):
+        super(UserDAO, self).__init__()
