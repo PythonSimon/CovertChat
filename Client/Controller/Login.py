@@ -1,5 +1,6 @@
 # coding=utf-8
 
+from re import *
 from wx import *
 
 from .Base import BaseFrame
@@ -95,4 +96,11 @@ class LoginFrame(BaseFrame):
             self.registering = True
 
     def login(self, event):
-        pass
+        email = self.globals["email"].GetValue()
+        password = self.globals["password"].GetVaalue()
+
+        if (not search(r"^[^ ]+$", email)) or (not search(r"^[^ ]+$", password)):
+            mistake = MessageDialog(None, "请完整填写信息！", caption="登录失败", style=OK | ICON_EXCLAMATION)
+            mistake.ShowModal()
+        else:
+            pass
