@@ -92,6 +92,7 @@ class LoginFrame(BaseFrame):
                 self,
                 self.globals["email"].GetValue()
             ).Show()
+            self.registering = True
 
     def login(self, event):
         pass

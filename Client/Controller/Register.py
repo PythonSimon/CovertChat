@@ -16,7 +16,7 @@ REGISTER = 22
 
 class RegisterFrame(BaseFrame):
 
-    def __init__(self, parent, email):
+    def __init__(self, parent: BaseFrame, email):
         super(RegisterFrame, self).__init__(
             (340, 475),
             "秘信",
@@ -139,6 +139,7 @@ class RegisterFrame(BaseFrame):
                 mistake.ShowModal()
 
     def register(self, event):
+        self.parent.Show()
         inputPanel = self.globals["inputPanel"]
         name = self.globals["name"].GetValue()
         password = self.globals["password"].GetValue()
@@ -214,14 +215,20 @@ class RegisterFrame(BaseFrame):
         else:
             result = register(email, name, password, password2)
 
-            if result[0] == RegisterResult.SUCCESS:
-                pass
-            elif result[0] == RegisterResult.USER_EXIST:
+            if result == RegisterResult.SUCCESS:
+                success = MessageDialog(None, "注册成功！", caption="注册成功", style=OK | ICON_INFORMATION)
+                success.ShowModal()
+
+                self.Hide()
+                self.parent.Show()
+            elif result == RegisterResult.USER_EXIST:
                 fail = MessageDialog(None, "邮箱已注册", caption="注册失败", style=OK | ICON_ERROR)
+                fail.ShowModal()
+            elif result == RegisterResult.SERVER:
+                fail = MessageDialog(None, "服务器连接异常", caption="连接失败", style=OK | ICON_ERROR)
                 fail.ShowModal()
 
     def wait(self):
-
         while True:
             if self.oneMinute:
                 for rest in range(60, 0, -1):
