@@ -12,29 +12,35 @@ class Command(IntEnum):
     LOGIN = 11
     REGISTER = 12
     SEND = 13
+    
+
+@unique
+class Status(IntEnum):
+    MAIN_USER = 21
+    SPECIAL_USER = 22
 
 
 @unique
 class LoginResult(IntEnum):
-    SUCCESS = 21
-    USER_NONE = -22
-    PASSWORD_WRONG = -23
+    SUCCESS = 31
+    USER_NONE = -32
+    PASSWORD_WRONG = -33
 
 
 @unique
 class RegisterResult(IntEnum):
-    SUCCESS = 31
-    USER_EXIST = -32
-    SEND_CODE_FAIL = -33
-    SERVER = -34
+    SUCCESS = 41
+    USER_EXIST = -42
+    SEND_CODE_FAIL = -43
+    SERVER = -44
 
 
 @unique
 class UserDAOResult(IntEnum):
-    SUCCESS = 41
-    USER_NONE = -42
-    USER_EXIST = -43
-    FAIL = -44
+    SUCCESS = 51
+    USER_NONE = -52
+    USER_EXIST = -53
+    FAIL = -54
 
 
 class Client(object):

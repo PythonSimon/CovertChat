@@ -23,7 +23,7 @@ def register(email, name, password, password2, client: tuple, serverSocket: sock
     )
 
     resultJ = dumps({
-            "result": result
+        "result": result
     })
 
     server.sendto(resultJ.encode(), client)
