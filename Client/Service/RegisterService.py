@@ -41,7 +41,13 @@ def register(email, name, password, password2):
         "password2": password2
     })
 
-    client.sendto(requestJ.encode(), Server.SERVICE_ADDRESS)
+    client.sendto(requestJ.encode(), Server.SERVER_SERVICE_ADDRESS)
 
-    # try:
-    #     dataclasses
+    try:
+        data, _ = client.recvfrom(1024)
+
+        result = loads(data.decode())
+
+        return result["result"]
+    except timeout:
+        return RegisterResult.SERVER
