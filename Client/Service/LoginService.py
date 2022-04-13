@@ -4,4 +4,6 @@ from socket import *
 
 from Client.Configure import *
 
-pass
+
+def login(email, password):
+    pass

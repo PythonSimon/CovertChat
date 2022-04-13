@@ -5,6 +5,8 @@ from wx import *
 
 from .Base import BaseFrame
 from .Register import RegisterFrame
+from Client.Configure import *
+from Client.Service.LoginService import login
 
 REGISTER = 11
 LOGIN = 12
@@ -100,7 +102,15 @@ class LoginFrame(BaseFrame):
         password = self.globals["password"].GetVaalue()
 
         if (not search(r"^[^ ]+$", email)) or (not search(r"^[^ ]+$", password)):
-            mistake = MessageDialog(None, "请完整填写信息！", caption="登录失败", style=OK | ICON_EXCLAMATION)
+            mistake = MessageDialog(None, "请完整填写信息！", caption="无法登录", style=OK | ICON_EXCLAMATION)
             mistake.ShowModal()
         else:
-            pass
+            result = login(email, password)
+
+            if result == LoginResult.SUCCESS:
+                pass
+            elif result == LoginResult.USER_NONE:
+                fail = MessageDialog(None, "用户不存在！", caption="登录失败", style=OK | ICON_ERROR)
+                fail.ShowModal()
+            elif result == LoginResult.PASSWORD_WRONG:
+                fail = MessageDialog(None, "密码错误！", caption="登陆失败", style=OK | ICON_ERROR)

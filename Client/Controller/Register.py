@@ -210,7 +210,7 @@ class RegisterFrame(BaseFrame):
             inputPanel.Layout()
 
         if mistake:
-            mistake = MessageDialog(None, "信息填写有误，请根据红色指示改正！", caption="无法注册", style=OK | ICON_ERROR)
+            mistake = MessageDialog(None, "信息填写有误，请根据红色指示改正！", caption="无法注册", style=OK | ICON_EXCLAMATION)
             mistake.ShowModal()
         else:
             result = register(email, name, password, password2)
