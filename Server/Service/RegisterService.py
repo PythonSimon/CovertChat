@@ -22,9 +22,8 @@ def register(email, name, password, password2, client: tuple, serverSocket: sock
         str(randint(1, 100))
     )
 
-    if result == UserDAOResult.SUCCESS:
-        resultJ = dumps({
+    resultJ = dumps({
             "result": result
-        })
+    })
 
-        server.sendto(resultJ.encode(), client)
+    server.sendto(resultJ.encode(), client)

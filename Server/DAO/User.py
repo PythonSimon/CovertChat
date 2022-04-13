@@ -44,7 +44,7 @@ class UserDAO(BaseDAO):
         finally:
             self.close()
 
-    def register(self, uid, email, name, password, password2, friends, avatar):
+    def register(self, uid, email, name, password, password2, friends, avatar) -> UserDAOResult:
         try:
             with self.connection.cursor() as cursor:
                 sql = "search email from EmailUser where email=%s"
