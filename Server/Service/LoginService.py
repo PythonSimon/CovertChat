@@ -1,4 +1,7 @@
 # coding=utf-8
 
-def login(email, password, client, serverSocket):
+from socket import *
+
+
+def login(email, password, client: tuple, serverSocket: socket):
     pass

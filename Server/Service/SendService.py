@@ -1,4 +1,7 @@
 # coding=utf-8
 
-def send(message, from_, to, serverSocket):
+from socket import *
+
+
+def send(message, from_: tuple, to: tuple, serverSocket: socket):
     pass

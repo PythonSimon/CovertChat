@@ -58,11 +58,16 @@ class UserDAO(BaseDAO):
 
                 cursor.execute(sql, (uid, email, name, password, password2, friends, avatar))
 
-                self.connection.commit()
+                sql = "insert into EmailUser (email) value %s"
 
+                cursor.execute(sql, email)
+
+                self.connection.commit()
         except DatabaseError:
             self.connection.rollback()
 
             return UserDAOResult.FAIL
+        else:
+            return UserDAOResult.SUCCESS
         finally:
             self.close()
