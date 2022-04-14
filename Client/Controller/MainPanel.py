@@ -27,3 +27,8 @@ class MainPanelFrame(BaseFrame):
         self.password2 = password2
         self.friends = friends
         self.avatar = avatar
+
+        self.main()
+
+    def main(self):
+        pass
