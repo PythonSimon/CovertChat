@@ -24,7 +24,7 @@ class LoginFrame(BaseFrame):
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | STAY_ON_TOP
         )
 
-        self.registering = False
+        self.registerFrame = RegisterFrame(self)
 
         self.main()
 
@@ -90,16 +90,12 @@ class LoginFrame(BaseFrame):
         self.Bind(EVT_BUTTON, handler=self.login, id=LOGIN)
 
     def register(self, event):
-        if not self.registering:
-            RegisterFrame(
-                self,
-                self.globals["email"].GetValue()
-            ).Show()
-            self.registering = True
+        if not self.registerFrame.IsShown():
+            self.registerFrame.Show()
 
     def login(self, event):
         email = self.globals["email"].GetValue()
-        password = self.globals["password"].GetVaalue()
+        password = self.globals["password"].GetValue()
 
         if (not search(r"^[^ ]+$", email)) or (not search(r"^[^ ]+$", password)):
             mistake = MessageDialog(None, "请完整填写信息！", caption="无法登录", style=OK | ICON_EXCLAMATION)
@@ -114,4 +110,7 @@ class LoginFrame(BaseFrame):
                 fail.ShowModal()
             elif result["result"] == LoginResult.PASSWORD_WRONG:
                 fail = MessageDialog(None, "密码错误！", caption="登陆失败", style=OK | ICON_ERROR)
+                fail.ShowModal()
+            elif result == RegisterResult.SERVER:
+                fail = MessageDialog(None, "服务器连接异常", caption="连接失败", style=OK | ICON_ERROR)
                 fail.ShowModal()

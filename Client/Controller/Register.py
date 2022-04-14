@@ -16,7 +16,7 @@ REGISTER = 22
 
 class RegisterFrame(BaseFrame):
 
-    def __init__(self, parent: BaseFrame, email):
+    def __init__(self, parent: BaseFrame):
         super(RegisterFrame, self).__init__(
             (340, 475),
             "秘信",
@@ -27,7 +27,6 @@ class RegisterFrame(BaseFrame):
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | FRAME_FLOAT_ON_PARENT
         )
 
-        self.email = email
         self.code = ""
         self.oneMinute = False
 
@@ -81,7 +80,6 @@ class RegisterFrame(BaseFrame):
         password2Ctrl.SetFont(defaultFont)
         emailText.SetFont(defaultFont)
         emailCtrl.SetFont(defaultFont)
-        emailCtrl.SetValue(self.email)
         getCode.SetFont(defaultFont)
         getCode.SetForegroundColour("#5C686C")
         getCode.AutoBrowse(False)
