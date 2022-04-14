@@ -33,6 +33,15 @@ class MainPanelFrame(BaseFrame):
     def main(self):
         sizer = BoxSizer(VERTICAL)
 
+        userPanel = Panel(self.panel)
+
+        userSizer = BoxSizer(HORIZONTAL)
+
+        avatarBitmap = Bitmap(f"Client\\Resource\\Avatar{self.avatar}.png", BITMAP_TYPE_PNG)
+        avatar = StaticBitmap(self.panel, bitmap=avatarBitmap)
+
+        userPanel.SetSizer(userSizer)
+
         self.panel.SetSizer(sizer)
 
         self.panel.Layout()
