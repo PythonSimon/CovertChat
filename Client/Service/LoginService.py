@@ -22,6 +22,6 @@ def login(email, password):
 
         result = loads(data.decode())
 
-        pass
+        return result
     except timeout:
         return LoginResult.SERVER

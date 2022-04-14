@@ -107,10 +107,11 @@ class LoginFrame(BaseFrame):
         else:
             result = login(email, password)
 
-            if result == LoginResult.SUCCESS:
+            if result["result"] == LoginResult.SUCCESS:
                 pass
-            elif result == LoginResult.USER_NONE:
+            elif result["result"] == LoginResult.USER_NONE:
                 fail = MessageDialog(None, "用户不存在！", caption="登录失败", style=OK | ICON_ERROR)
                 fail.ShowModal()
-            elif result == LoginResult.PASSWORD_WRONG:
+            elif result["result"] == LoginResult.PASSWORD_WRONG:
                 fail = MessageDialog(None, "密码错误！", caption="登陆失败", style=OK | ICON_ERROR)
+                fail.ShowModal()
