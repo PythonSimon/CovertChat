@@ -11,7 +11,7 @@ class MainPanelFrame(BaseFrame):
 
     def __init__(self, uid, email, status, name, password, password2, friends: list, avatar):
         super(MainPanelFrame, self).__init__(
-            (350 , 220),
+            (350, 1200),
             "秘信",
             r"Resource\MainIcon.png",
             warn=False,
@@ -31,4 +31,8 @@ class MainPanelFrame(BaseFrame):
         self.main()
 
     def main(self):
-        pass
+        sizer = BoxSizer(VERTICAL)
+
+        self.panel.SetSizer(sizer)
+
+        self.panel.Layout()
