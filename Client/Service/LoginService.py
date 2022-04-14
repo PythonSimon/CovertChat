@@ -16,3 +16,12 @@ def login(email, password):
     })
 
     client.sendto(requestJ.encode(), Server.SERVER_SERVICE_ADDRESS)
+
+    try:
+        data, _ = client.recvfrom(1024)
+
+        result = loads(data.decode())
+
+        pass
+    except timeout:
+        return LoginResult.SERVER

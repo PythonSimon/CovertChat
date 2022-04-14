@@ -12,7 +12,7 @@ class Command(IntEnum):
     LOGIN = 11
     REGISTER = 12
     SEND = 13
-    
+
 
 @unique
 class Status(IntEnum):
@@ -25,6 +25,7 @@ class LoginResult(IntEnum):
     SUCCESS = 31
     USER_NONE = -32
     PASSWORD_WRONG = -33
+    SERVER = -34
 
 
 @unique

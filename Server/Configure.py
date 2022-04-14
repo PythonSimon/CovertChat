@@ -25,6 +25,7 @@ class LoginResult(IntEnum):
     SUCCESS = 31
     USER_NONE = -32
     PASSWORD_WRONG = -33
+    SERVER = -34
 
 
 @unique

@@ -38,3 +38,5 @@ def login(email, password, client: tuple, serverSocket: socket):
             resultJ = dumps({
                 "result": LoginResult.PASSWORD_WRONG
             })
+
+            server.sendto(resultJ.encode(), client)
