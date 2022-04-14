@@ -111,6 +111,6 @@ class LoginFrame(BaseFrame):
             elif result["result"] == LoginResult.PASSWORD_WRONG:
                 fail = MessageDialog(None, "密码错误！", caption="登陆失败", style=OK | ICON_ERROR)
                 fail.ShowModal()
-            elif result == RegisterResult.SERVER:
+            elif result["result"] == LoginResult.SERVER:
                 fail = MessageDialog(None, "服务器连接异常", caption="连接失败", style=OK | ICON_ERROR)
                 fail.ShowModal()

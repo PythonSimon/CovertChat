@@ -24,4 +24,4 @@ def login(email, password):
 
         return result
     except timeout:
-        return LoginResult.SERVER
+        return {"result": LoginResult.SERVER}
