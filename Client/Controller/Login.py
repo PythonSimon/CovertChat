@@ -4,6 +4,7 @@ from re import *
 from wx import *
 
 from .Base import BaseFrame
+from .MainPanel import MainPanelFrame
 from .Register import RegisterFrame
 from Client.Configure import *
 from Client.Service.LoginService import login
@@ -104,7 +105,11 @@ class LoginFrame(BaseFrame):
             result = login(email, password)
 
             if result["result"] == LoginResult.SUCCESS:
-                pass
+                del result["result"]
+
+                self.Hide()
+
+                MainPanelFrame(**result)
             elif result["result"] == LoginResult.USER_NONE:
                 fail = MessageDialog(None, "用户不存在！", caption="登录失败", style=OK | ICON_ERROR)
                 fail.ShowModal()
