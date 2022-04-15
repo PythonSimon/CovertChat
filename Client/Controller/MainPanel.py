@@ -39,6 +39,7 @@ class MainPanelFrame(BaseFrame):
 
         avatarBitmap = Bitmap(f"Client\\Resource\\Avatar{self.avatar}.png", BITMAP_TYPE_PNG)
         avatar = StaticBitmap(self.panel, bitmap=avatarBitmap)
+        name = StaticText(userPanel, label=self.name)
 
         userPanel.SetSizer(userSizer)
 
