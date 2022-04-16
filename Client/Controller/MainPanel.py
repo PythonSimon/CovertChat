@@ -38,8 +38,11 @@ class MainPanelFrame(BaseFrame):
         userSizer = BoxSizer(HORIZONTAL)
 
         avatarBitmap = Bitmap(f"Client\\Resource\\Avatar{self.avatar}.png", BITMAP_TYPE_PNG)
-        avatar = StaticBitmap(self.panel, bitmap=avatarBitmap)
+        avatar = BitmapButton(self.panel, bitmap=avatarBitmap)
         name = StaticText(userPanel, label=self.name)
+
+        userSizer.Add(avatar, flag=ALIGN_LEFT | ALIGN_CENTER_HORIZONTAL | LEFT | RIGHT, border=20)
+        userSizer.Add(name, flag=ALIGN_CENTER_HORIZONTAL | LEFT, border=20)
 
         userPanel.SetSizer(userSizer)
 
