@@ -9,7 +9,7 @@ from Client.Configure import *
 
 class MainPanelFrame(BaseFrame):
 
-    def __init__(self, uid, email, status, name, password, password2, friends: list[str], avatar):
+    def __init__(self, uid, email, status: Status, name, password, password2, friends: list[str], avatar):
         super(MainPanelFrame, self).__init__(
             (350, 850),
             "秘信",
