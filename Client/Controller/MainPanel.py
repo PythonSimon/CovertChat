@@ -58,7 +58,7 @@ class MainPanelFrame(BaseFrame):
 class MainApp(App):
 
     def OnInit(self):
-        mainFrame = MainPanelFrame("1", "81@qq.com", "f", "程序喵", "12", "21", [""], "43")
+        mainFrame = MainPanelFrame("1", "81@qq.com", "f", "程序喵", "12", "21", [""], "36")
         mainFrame.Show()
 
         return True
