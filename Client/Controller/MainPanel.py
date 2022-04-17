@@ -38,8 +38,10 @@ class MainPanelFrame(BaseFrame):
         userSizer = BoxSizer(HORIZONTAL)
 
         avatarBitmap = Bitmap(f"..\\Resource\\Avatar{self.avatar}.png", BITMAP_TYPE_PNG)
-        avatar = BitmapButton(self.panel, bitmap=avatarBitmap)
+        avatarBitmap = Bitmap(avatarBitmap.ConvertToImage().Scale(50, 50, wx.IMAGE_QUALITY_HIGH))
+        avatar = BitmapButton(userPanel, bitmap=avatarBitmap)
         name = StaticText(userPanel, label=self.name)
+        name.SetFont(Font(14, SCRIPT, NORMAL, NORMAL, False))
 
         userSizer.Add(avatar, flag=ALIGN_CENTER_VERTICAL | LEFT, border=20)
         userSizer.Add(name, flag=ALIGN_CENTER_VERTICAL | LEFT, border=25)
@@ -56,7 +58,7 @@ class MainPanelFrame(BaseFrame):
 class MainApp(App):
 
     def OnInit(self):
-        mainFrame = MainPanelFrame("1", "81@qq.com", "f", "程序喵", "12", "21", [""], "2")
+        mainFrame = MainPanelFrame("1", "81@qq.com", "f", "程序喵", "12", "21", [""], "43")
         mainFrame.Show()
 
         return True
