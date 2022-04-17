@@ -11,9 +11,9 @@ class MainPanelFrame(BaseFrame):
 
     def __init__(self, uid, email, status, name, password, password2, friends: list[str], avatar):
         super(MainPanelFrame, self).__init__(
-            (350, 1200),
+            (350, 850),
             "秘信",
-            r"Resource\MainIcon.png",
+            r"..\Resource\MainIcon.png",
             warn=False,
             backgroundColor="#F5F8F9",
             style=DEFAULT_FRAME_STYLE ^ MAXIMIZE_BOX | STAY_ON_TOP
@@ -37,16 +37,16 @@ class MainPanelFrame(BaseFrame):
 
         userSizer = BoxSizer(HORIZONTAL)
 
-        avatarBitmap = Bitmap(f"Client\\Resource\\Avatar{self.avatar}.png", BITMAP_TYPE_PNG)
+        avatarBitmap = Bitmap(f"..\\Resource\\Avatar{self.avatar}.png", BITMAP_TYPE_PNG)
         avatar = BitmapButton(self.panel, bitmap=avatarBitmap)
         name = StaticText(userPanel, label=self.name)
 
-        userSizer.Add(avatar, flag=ALIGN_LEFT | ALIGN_CENTER_HORIZONTAL | LEFT, border=20)
-        userSizer.Add(name, flag=ALIGN_CENTER_HORIZONTAL | LEFT, border=25)
+        userSizer.Add(avatar, flag=ALIGN_CENTER_VERTICAL | LEFT, border=20)
+        userSizer.Add(name, flag=ALIGN_CENTER_VERTICAL | LEFT, border=25)
 
         userPanel.SetSizer(userSizer)
 
-        sizer.Add(userPanel, flag=EXPAND)
+        sizer.Add(userPanel)
 
         self.panel.SetSizer(sizer)
 
