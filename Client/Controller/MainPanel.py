@@ -3,13 +3,13 @@
 from wx import *
 from wx.lib.buttons import *
 
-from .Base import BaseFrame
+from Base import BaseFrame
 from Client.Configure import *
 
 
 class MainPanelFrame(BaseFrame):
 
-    def __init__(self, uid, email, status, name, password, password2, friends: list, avatar):
+    def __init__(self, uid, email, status, name, password, password2, friends: list[str], avatar):
         super(MainPanelFrame, self).__init__(
             (350, 1200),
             "秘信",
@@ -41,11 +41,31 @@ class MainPanelFrame(BaseFrame):
         avatar = BitmapButton(self.panel, bitmap=avatarBitmap)
         name = StaticText(userPanel, label=self.name)
 
-        userSizer.Add(avatar, flag=ALIGN_LEFT | ALIGN_CENTER_HORIZONTAL | LEFT | RIGHT, border=20)
-        userSizer.Add(name, flag=ALIGN_CENTER_HORIZONTAL | LEFT, border=20)
+        userSizer.Add(avatar, flag=ALIGN_LEFT | ALIGN_CENTER_HORIZONTAL | LEFT, border=20)
+        userSizer.Add(name, flag=ALIGN_CENTER_HORIZONTAL | LEFT, border=25)
 
         userPanel.SetSizer(userSizer)
+
+        sizer.Add(userPanel, flag=EXPAND)
 
         self.panel.SetSizer(sizer)
 
         self.panel.Layout()
+
+
+class MainApp(App):
+
+    def OnInit(self):
+        mainFrame = MainPanelFrame("1", "81@qq.com", "f", "程序喵", "12", "21", [""], "2")
+        mainFrame.Show()
+
+        return True
+
+    def OnExit(self):
+        return 0
+
+
+if __name__ == "__main__":
+    mainApp = MainApp()
+
+    mainApp.MainLoop()
