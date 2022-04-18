@@ -39,7 +39,7 @@ class RegisterFrame(BaseFrame):
 
         titleText.SetFont(Font(15, SCRIPT, NORMAL, BOLD, False))
 
-        inputPanel = Panel(self.panel, style=BORDER_DOUBLE)
+        inputPanel = Panel(self.panel, style=BORDER_SIMPLE)
 
         self.globals["inputPanel"] = inputPanel
 

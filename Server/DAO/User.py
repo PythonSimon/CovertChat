@@ -11,7 +11,7 @@ class UserDAO(BaseDAO):
     def __init__(self):
         super(UserDAO, self).__init__()
 
-    def findUser(self, **condition):
+    def findUser(self, simple=False, **condition):
         try:
             with self.connection.cursor() as cursor:
                 if "uid" in condition:
@@ -30,15 +30,23 @@ class UserDAO(BaseDAO):
                 if result is None:
                     return UserDAOResult.USER_NONE
                 else:
-                    user = {
-                        "uid": result[0],
-                        "email": result[1],
-                        "name": result[2],
-                        "password": result[3],
-                        "password2": result[4],
-                        "friends": result[5],
-                        "avatar": result[6],
-                    }
+                    if simple:
+                        user = {
+                            "uid": result[0],
+                            "email": result[1],
+                            "name": result[2],
+                            "avatar": result[6],
+                        }
+                    else:
+                        user = {
+                            "uid": result[0],
+                            "email": result[1],
+                            "name": result[2],
+                            "password": result[3],
+                            "password2": result[4],
+                            "friends": [self.findUser(simple=True, uid=uid) for uid in result[5]],
+                            "avatar": result[6],
+                        }
 
                     return user
         finally:

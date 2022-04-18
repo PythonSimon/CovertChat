@@ -2,6 +2,7 @@
 
 from wx import *
 from wx.lib.buttons import *
+from wx.lib.scrolledpanel import *
 
 from Base import BaseFrame
 from Client.Configure import *
@@ -9,7 +10,7 @@ from Client.Configure import *
 
 class MainPanelFrame(BaseFrame):
 
-    def __init__(self, uid, email, status: Status, name, password, password2, friends: list[str], avatar):
+    def __init__(self, uid, email, status: Status, name, password, password2, friends: list[list], avatar):
         super(MainPanelFrame, self).__init__(
             (350, 850),
             "秘信",
@@ -48,6 +49,8 @@ class MainPanelFrame(BaseFrame):
 
         userPanel.SetSizer(userSizer)
 
+        friendsPanel = ScrolledPanel(self.panel, style=BORDER_SIMPLE)
+
         sizer.Add(userPanel)
 
         self.panel.SetSizer(sizer)
@@ -55,10 +58,10 @@ class MainPanelFrame(BaseFrame):
         self.panel.Layout()
 
 
-class MainApp(App):
+class MainApp(App): 
 
     def OnInit(self):
-        mainFrame = MainPanelFrame("1", "81@qq.com", "f", "程序喵", "12", "21", [""], "36")
+        mainFrame = MainPanelFrame("1", "81@qq.com", Status.MAIN_USER, "程序喵", "12", "21", [], "36")
         mainFrame.Show()
 
         return True

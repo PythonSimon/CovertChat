@@ -32,7 +32,7 @@ class LoginFrame(BaseFrame):
     def main(self):
         sizer = BoxSizer(VERTICAL)
 
-        inputPanel = Panel(self.panel, style=BORDER_DOUBLE)
+        inputPanel = Panel(self.panel, style=BORDER_SIMPLE)
 
         inputSizer = FlexGridSizer(2, 2, vgap=0, hgap=10)
 
