@@ -51,7 +51,12 @@ class MainPanelFrame(BaseFrame):
 
         friendsPanel = ScrolledPanel(self.panel, style=BORDER_SIMPLE)
 
+        friendsSizer = FlexGridSizer(1, len(self.friends), 0, 1)
+
+        friendsPanel.SetSizer(friendsSizer)
+
         sizer.Add(userPanel)
+        sizer.Add(friendsPanel, flag=UP, border=20)
 
         self.panel.SetSizer(sizer)
 
