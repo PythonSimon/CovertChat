@@ -53,6 +53,13 @@ class MainPanelFrame(BaseFrame):
 
         friendsSizer = FlexGridSizer(1, len(self.friends), 0, 1)
 
+        for index, friend in self.friends:
+            friendAvatar = Bitmap(f"Resource\\Avatar{friend['avatar']}.png.", BITMAP_TYPE_PNG)
+            friendName = friend["name"]
+            friendButton = GenBitmapTextButton(friendsPanel, id=index, bitmap=friendAvatar, label=friendName)
+
+            friendButton.Bind(EVT_BUTTON, self.chat)
+
         friendsPanel.SetSizer(friendsSizer)
 
         sizer.Add(userPanel)
@@ -61,6 +68,9 @@ class MainPanelFrame(BaseFrame):
         self.panel.SetSizer(sizer)
 
         self.panel.Layout()
+
+    def chat(self, event):
+        pass
 
 
 class MainApp(App): 
