@@ -58,6 +58,8 @@ class MainPanelFrame(BaseFrame):
             friendName = friend["name"]
             friendButton = GenBitmapTextButton(friendsPanel, id=index, bitmap=friendAvatar, label=friendName)
 
+            friendsSizer.Add(friendButton)
+
             friendButton.Bind(EVT_BUTTON, self.chat)
 
         friendsPanel.SetSizer(friendsSizer)
