@@ -10,7 +10,7 @@ from Client.Configure import *
 
 class MainPanelFrame(BaseFrame):
 
-    def __init__(self, uid, email, status: Status, name, password, password2, friends: list[list], avatar):
+    def __init__(self, uid, email, status: Status, name, password, password2, friends: list[dict], avatar):
         super(MainPanelFrame, self).__init__(
             (350, 850),
             "秘信",
@@ -53,8 +53,8 @@ class MainPanelFrame(BaseFrame):
 
         friendsSizer = FlexGridSizer(1, len(self.friends), 0, 1)
 
-        for index, friend in self.friends:
-            friendAvatar = Bitmap(f"Resource\\Avatar{friend['avatar']}.png.", BITMAP_TYPE_PNG)
+        for index, friend in enumerate(self.friends):
+            friendAvatar = Bitmap(f"..\\Resource\\Avatar{friend['avatar']}.png.", BITMAP_TYPE_PNG)
             friendName = friend["name"]
             friendButton = GenBitmapTextButton(friendsPanel, id=index, bitmap=friendAvatar, label=friendName)
 
@@ -76,7 +76,7 @@ class MainPanelFrame(BaseFrame):
 class MainApp(App): 
 
     def OnInit(self):
-        mainFrame = MainPanelFrame("1", "81@qq.com", Status.MAIN_USER, "程序喵", "12", "21", [], "36")
+        mainFrame = MainPanelFrame("1", "81@qq.com", Status.MAIN_USER, "程序喵", "12", "21", [{"avatar": "1", "name": "fr"}], "36")
         mainFrame.Show()
 
         return True
