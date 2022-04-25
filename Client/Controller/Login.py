@@ -9,11 +9,11 @@ from .Register import RegisterFrame
 from Client.Configure import *
 from Client.Service.LoginService import login
 
-REGISTER = 11
-LOGIN = 12
-
 
 class LoginFrame(BaseFrame):
+    REGISTER = 11
+    LOGIN = 12
+
 
     def __init__(self):
         super(LoginFrame, self).__init__(
@@ -67,8 +67,8 @@ class LoginFrame(BaseFrame):
         buttonSizer = BoxSizer(HORIZONTAL)
 
         defaultFont = Font(12, SCRIPT, NORMAL, NORMAL, False)
-        registerButton = Button(self.panel, id=REGISTER, label="注册")
-        loginButton = Button(self.panel, id=LOGIN, label="登录")
+        registerButton = Button(self.panel, id=LoginFrame.REGISTER, label="注册")
+        loginButton = Button(self.panel, id=LoginFrame.LOGIN, label="登录")
 
         registerButton.SetFont(defaultFont)
         loginButton.SetFont(defaultFont)
@@ -87,8 +87,8 @@ class LoginFrame(BaseFrame):
         self.SetMaxSize((350, 220))
         self.panel.Layout()
 
-        self.Bind(EVT_BUTTON, handler=self.register, id=REGISTER)
-        self.Bind(EVT_BUTTON, handler=self.login, id=LOGIN)
+        self.Bind(EVT_BUTTON, handler=self.register, id=LoginFrame.REGISTER)
+        self.Bind(EVT_BUTTON, handler=self.login, id=LoginFrame.LOGIN)
 
     def register(self, event):
         if not self.registerFrame.IsShown():

@@ -10,11 +10,10 @@ from .Base import BaseFrame
 from Client.Configure import *
 from Client.Service.RegisterService import sendCode, register
 
-GET_CODE = 21
-REGISTER = 22
-
 
 class RegisterFrame(BaseFrame):
+    GET_CODE = 21
+    REGISTER = 22
 
     def __init__(self, parent: BaseFrame):
         super(RegisterFrame, self).__init__(
@@ -62,7 +61,7 @@ class RegisterFrame(BaseFrame):
         password2Ctrl = TextCtrl(inputPanel)
         emailText = StaticText(inputPanel, label="邮箱")
         emailCtrl = TextCtrl(inputPanel)
-        getCode = HyperLinkCtrl(inputPanel, id=GET_CODE, label="获取验证码")
+        getCode = HyperLinkCtrl(inputPanel, id=RegisterFrame.GET_CODE, label="获取验证码")
         codeCtrl = TextCtrl(inputPanel)
 
         self.globals["name"] = nameCtrl
@@ -102,7 +101,7 @@ class RegisterFrame(BaseFrame):
 
         inputPanel.Layout()
 
-        registerButton = Button(self.panel, id=REGISTER, label="注册")
+        registerButton = Button(self.panel, id=RegisterFrame.REGISTER, label="注册")
 
         sizer.Add(titleText, flag=ALIGN_CENTER | ALL, border=10)
         sizer.Add(inputPanel, flag=EXPAND | ALL, border=20)
@@ -116,8 +115,9 @@ class RegisterFrame(BaseFrame):
         self.SetMaxSize(self.size)
         self.panel.Layout()
 
-        self.Bind(EVT_HYPERLINK_LEFT, handler=self.getCode, id=GET_CODE)
-        self.Bind(EVT_BUTTON, handler=self.register, id=REGISTER)
+        self.Bind(EVT_HYPERLINK_LEFT, handler=self.getCode, id=RegisterFrame.GET_CODE)
+        self.Bind(EVT_BUTTON, handler=self.register, id=RegisterFrame.REGISTER)
+
         Thread(target=self.wait).start()
 
     def getCode(self, event):

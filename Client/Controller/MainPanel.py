@@ -9,6 +9,7 @@ from Client.Configure import *
 
 
 class MainPanelFrame(BaseFrame):
+    USER_DETAIL = 31
 
     def __init__(self, uid, email, status: Status, name, password, password2, friends: list[dict], avatar):
         super(MainPanelFrame, self).__init__(
@@ -40,9 +41,10 @@ class MainPanelFrame(BaseFrame):
 
         avatarBitmap = Bitmap(f"..\\Resource\\Avatar{self.avatar}.png", BITMAP_TYPE_PNG)
         avatarBitmap = Bitmap(avatarBitmap.ConvertToImage().Scale(50, 50, wx.IMAGE_QUALITY_HIGH))
-        avatar = BitmapButton(userPanel, bitmap=avatarBitmap, style=BORDER_NONE)
+        avatar = BitmapButton(userPanel, id=MainPanelFrame.USER_DETAIL, bitmap=avatarBitmap, style=BORDER_NONE)
         name = StaticText(userPanel, label=self.name)
-        
+
+        avatar.SetToolTip(self.name)
         name.SetFont(Font(14, SCRIPT, NORMAL, NORMAL, False))
 
         userSizer.Add(avatar, flag=ALIGN_CENTER_VERTICAL | LEFT, border=20)
@@ -70,12 +72,17 @@ class MainPanelFrame(BaseFrame):
 
         friendsPanel.SetSizer(friendsSizer)
 
-        sizer.Add(userPanel)
+        sizer.Add(userPanel, flag=UP, border=10)
         sizer.Add(friendsPanel, flag=EXPAND | UP, border=20)
 
         self.panel.SetSizer(sizer)
 
         self.panel.Layout()
+
+        self.Bind(EVT_BUTTON, handler=self.userDetail, id=MainPanelFrame.USER_DETAIL)
+
+    def userDetail(self, event):
+        pass
 
     def chat(self, event):
         pass
