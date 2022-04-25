@@ -6,6 +6,7 @@ from wx.lib.scrolledpanel import *
 
 from Base import BaseFrame
 from Client.Configure import *
+from UserDetail import UserDetailFrame
 
 
 class MainPanelFrame(BaseFrame):
@@ -82,7 +83,12 @@ class MainPanelFrame(BaseFrame):
         self.Bind(EVT_BUTTON, handler=self.userDetail, id=MainPanelFrame.USER_DETAIL)
 
     def userDetail(self, event):
-        pass
+        password = PasswordEntryDialog(self, "请输入用户密码", caption="秘信")
+
+        password.ShowModal()
+
+        print(password.GetValue())
+        # detailFrame = UserDetailFrame(self, )
 
     def chat(self, event):
         pass
