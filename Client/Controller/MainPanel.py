@@ -83,12 +83,19 @@ class MainPanelFrame(BaseFrame):
         self.Bind(EVT_BUTTON, handler=self.userDetail, id=MainPanelFrame.USER_DETAIL)
 
     def userDetail(self, event):
-        password = PasswordEntryDialog(self, "请输入用户密码", caption="秘信")
-
+        password = PasswordEntryDialog(self, "请输入用户密码", caption="身份验证")
         password.ShowModal()
 
-        print(password.GetValue())
-        # detailFrame = UserDetailFrame(self, )
+        password = password.GetValue()
+
+        if password == self.password:
+            if self.status == Status.MAIN_USER:
+                pass
+            elif self.status == Status.SPECIAL_USER:
+                mistake = MessageDialog(None, "密码错误！", caption="无法查看信息", style=OK | ICON_EXCLAMATION)
+                mistake.ShowModal()
+        elif password == self.password2:
+            pass
 
     def chat(self, event):
         pass
@@ -97,7 +104,7 @@ class MainPanelFrame(BaseFrame):
 class MainApp(App): 
 
     def OnInit(self):
-        mainFrame = MainPanelFrame("1", "81@qq.com", Status.MAIN_USER, "程序喵", "12", "21", [{"avatar": "1", "name": "fr"}], "36")
+        mainFrame = MainPanelFrame("1", "81@qq.com", Status.SPECIAL_USER, "程序喵", "12", "21", [{"avatar": "1", "name": "fr"}], "36")
         mainFrame.Show()
 
         return True
