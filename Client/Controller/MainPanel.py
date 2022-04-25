@@ -40,8 +40,9 @@ class MainPanelFrame(BaseFrame):
 
         avatarBitmap = Bitmap(f"..\\Resource\\Avatar{self.avatar}.png", BITMAP_TYPE_PNG)
         avatarBitmap = Bitmap(avatarBitmap.ConvertToImage().Scale(50, 50, wx.IMAGE_QUALITY_HIGH))
-        avatar = BitmapButton(userPanel, bitmap=avatarBitmap)
+        avatar = BitmapButton(userPanel, bitmap=avatarBitmap, style=BORDER_NONE)
         name = StaticText(userPanel, label=self.name)
+        
         name.SetFont(Font(14, SCRIPT, NORMAL, NORMAL, False))
 
         userSizer.Add(avatar, flag=ALIGN_CENTER_VERTICAL | LEFT, border=20)
@@ -51,21 +52,26 @@ class MainPanelFrame(BaseFrame):
 
         friendsPanel = ScrolledPanel(self.panel, style=BORDER_SIMPLE)
 
-        friendsSizer = FlexGridSizer(1, len(self.friends), 0, 1)
+        friendsSizer = BoxSizer(VERTICAL)
 
         for index, friend in enumerate(self.friends):
             friendAvatar = Bitmap(f"..\\Resource\\Avatar{friend['avatar']}.png.", BITMAP_TYPE_PNG)
+            friendAvatar = Bitmap(friendAvatar.ConvertToImage().Scale(50, 50, wx.IMAGE_QUALITY_HIGH))
             friendName = friend["name"]
-            friendButton = GenBitmapTextButton(friendsPanel, id=index, bitmap=friendAvatar, label=friendName)
+            friendButton = GenBitmapTextButton(friendsPanel, id=index, bitmap=friendAvatar, label=friendName,
+                                               style=BORDER_NONE)
+            # friendButton.SetBackgroundColour(self.backgroundColor)
 
-            friendsSizer.Add(friendButton)
+            friendButton.SetFont(Font(14, SCRIPT, NORMAL, NORMAL, False))
+
+            friendsSizer.Add(friendButton, flag=EXPAND)
 
             friendButton.Bind(EVT_BUTTON, self.chat)
 
         friendsPanel.SetSizer(friendsSizer)
 
         sizer.Add(userPanel)
-        sizer.Add(friendsPanel, flag=UP, border=20)
+        sizer.Add(friendsPanel, flag=EXPAND | UP, border=20)
 
         self.panel.SetSizer(sizer)
 
