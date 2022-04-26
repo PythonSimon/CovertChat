@@ -4,6 +4,7 @@ from re import *
 from wx import *
 
 from .Base import BaseFrame
+from .ConciseTextCtrl import ConciseTextCtrl
 from .MainPanel import MainPanelFrame
 from .Register import RegisterFrame
 from Client.Configure import *
@@ -34,31 +35,22 @@ class LoginFrame(BaseFrame):
 
         inputPanel = Panel(self.panel, style=BORDER_SIMPLE)
 
-        inputSizer = FlexGridSizer(2, 2, vgap=0, hgap=10)
-
-        inputSizer.AddGrowableRow(0, 1)
-        inputSizer.AddGrowableRow(1, 1)
-        inputSizer.AddGrowableCol(0, 1)
-        inputSizer.AddGrowableCol(1, 2)
+        inputSizer = BoxSizer(VERTICAL)
 
         defaultFont = Font(10, SCRIPT, NORMAL, NORMAL, False)
-        emailText = StaticText(inputPanel, label="邮箱")
-        emailCtrl = TextCtrl(inputPanel)
-        passwordText = StaticText(inputPanel, label="密码")
-        passwordCtrl = TextCtrl(inputPanel, style=TE_PASSWORD)
+        emailCtrl = ConciseTextCtrl(inputPanel, hint="邮箱")
+        passwordCtrl = ConciseTextCtrl(inputPanel, hint="密码", style=TE_PASSWORD)
 
         self.globals["email"] = emailCtrl
         self.globals["password"] = passwordCtrl
 
-        emailText.SetFont(defaultFont)
         emailCtrl.SetFont(defaultFont)
-        passwordText.SetFont(defaultFont)
+        emailCtrl.SetBackgroundColour(self.backgroundColor)
         passwordCtrl.SetFont(defaultFont)
+        passwordCtrl.SetBackgroundColour(self.backgroundColor)
 
-        inputSizer.Add(emailText, flag=ALIGN_CENTER)
-        inputSizer.Add(emailCtrl, flag=SHAPED | ALL, border=10)
-        inputSizer.Add(passwordText, flag=ALIGN_CENTER)
-        inputSizer.Add(passwordCtrl, flag=SHAPED | ALL, border=10)
+        inputSizer.Add(emailCtrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | TOP | BOTTOM | RIGHT, border=10)
+        inputSizer.Add(passwordCtrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | TOP | BOTTOM | RIGHT, border=10)
 
         inputPanel.SetSizer(inputSizer)
 

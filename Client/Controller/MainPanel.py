@@ -4,9 +4,9 @@ from wx import *
 from wx.lib.buttons import *
 from wx.lib.scrolledpanel import *
 
-from Base import BaseFrame
+from .Base import BaseFrame
 from Client.Configure import *
-from UserDetail import UserDetailFrame
+from .UserDetail import UserDetailFrame
 
 
 class MainPanelFrame(BaseFrame):

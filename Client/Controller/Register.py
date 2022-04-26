@@ -7,6 +7,7 @@ from wx import *
 from wx.lib.agw.hyperlink import *
 
 from .Base import BaseFrame
+from .ConciseTextCtrl import ConciseTextCtrl
 from Client.Configure import *
 from Client.Service.RegisterService import sendCode, register
 

@@ -2,7 +2,7 @@
 
 from wx import *
 
-from Base import BaseFrame
+from .Base import BaseFrame
 
 
 class UserDetailFrame(BaseFrame):
