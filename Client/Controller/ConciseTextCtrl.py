@@ -5,13 +5,14 @@ from wx import *
 
 class ConciseTextCtrl(TextCtrl):
 
-    def __init__(self, parent, id=ID_ANY, value=EmptyString, height=2,
+    def __init__(self, parent, id=ID_ANY, value=EmptyString,
                  hint=EmptyString, style=0, name=TextCtrlNameStr):
         super(ConciseTextCtrl, self).__init__(parent=parent, id=id, value=value, style=style | BORDER_NONE, name=name)
 
         self.sizer = BoxSizer(VERTICAL)
         self.staticLine = StaticLine()
 
+        self.parent = parent
         self.focus = "BLUE"
         self.normal = "GREY"
 

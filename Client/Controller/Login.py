@@ -45,10 +45,10 @@ class LoginFrame(BaseFrame):
 
         emailCtrl.SetFont(defaultFont)
         emailCtrl.SetBackgroundColour(self.backgroundColor)
-        emailCtrl.FocusLine("GREY", "rgb(32, 71, 121)")
+        emailCtrl.FocusLine("rgb(79, 79, 79)", "rgb(102, 147, 208)")
         passwordCtrl.SetFont(defaultFont)
         passwordCtrl.SetBackgroundColour(self.backgroundColor)
-        passwordCtrl.FocusLine("GREY", "rgb(32, 71, 121)")
+        passwordCtrl.FocusLine("rgb(111, 113, 113)", "rgb(102, 147, 208)")
 
         inputSizer.Add(emailCtrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | TOP | BOTTOM | RIGHT, border=10)
         inputSizer.Add(passwordCtrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | TOP | BOTTOM | RIGHT, border=10)

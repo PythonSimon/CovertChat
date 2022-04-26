@@ -18,7 +18,7 @@ class RegisterFrame(BaseFrame):
 
     def __init__(self, parent: BaseFrame):
         super(RegisterFrame, self).__init__(
-            (340, 475),
+            (340, 450),
             "秘信",
             r"Resource\MainIcon.png",
             parent=parent,
@@ -43,66 +43,65 @@ class RegisterFrame(BaseFrame):
 
         self.globals["inputPanel"] = inputPanel
 
-        inputSizer = FlexGridSizer(5, 2, vgap=15, hgap=10)
+        inputSizer = BoxSizer(VERTICAL)
 
-        inputSizer.AddGrowableRow(0, 1)
-        inputSizer.AddGrowableRow(1, 1)
-        inputSizer.AddGrowableRow(2, 1)
-        inputSizer.AddGrowableRow(3, 1)
-        inputSizer.AddGrowableRow(4, 1)
-        inputSizer.AddGrowableCol(0, 1)
-        inputSizer.AddGrowableCol(1, 2)
+        defaultFont = Font(11, SCRIPT, NORMAL, NORMAL, False)
+        nameCtrl = ConciseTextCtrl(inputPanel, hint="昵称")
+        passwordCtrl = ConciseTextCtrl(inputPanel, hint="密码")
+        password2Ctrl = ConciseTextCtrl(inputPanel, hint="备用密码")
+        emailCtrl = ConciseTextCtrl(inputPanel, hint="邮箱")
 
-        defaultFont = Font(10, SCRIPT, NORMAL, NORMAL, False)
-        nameText = StaticText(inputPanel, label="昵称")
-        nameCtrl = TextCtrl(inputPanel)
-        passwordText = StaticText(inputPanel, label="密码")
-        passwordCtrl = TextCtrl(inputPanel)
-        password2Text = StaticText(inputPanel, label="备用密码")
-        password2Ctrl = TextCtrl(inputPanel)
-        emailText = StaticText(inputPanel, label="邮箱")
-        emailCtrl = TextCtrl(inputPanel)
+        horizontalSizer = BoxSizer(HORIZONTAL)
+
         getCode = HyperLinkCtrl(inputPanel, id=RegisterFrame.GET_CODE, label="获取验证码")
-        codeCtrl = TextCtrl(inputPanel)
+        codeCtrl = ConciseTextCtrl(inputPanel, hint="验证码")
 
-        self.globals["name"] = nameCtrl
-        self.globals["password"] = passwordCtrl
-        self.globals["password2"] = password2Ctrl
-        self.globals["email"] = emailCtrl
         self.globals["code"] = codeCtrl
         self.globals["getCode"] = getCode
 
-        nameText.SetFont(defaultFont)
-        nameCtrl.SetFont(defaultFont)
-        passwordText.SetFont(defaultFont)
-        passwordCtrl.SetFont(defaultFont)
-        password2Text.SetFont(defaultFont)
-        password2Ctrl.SetFont(defaultFont)
-        emailText.SetFont(defaultFont)
-        emailCtrl.SetFont(defaultFont)
         getCode.SetFont(defaultFont)
         getCode.SetForegroundColour("#5C686C")
         getCode.AutoBrowse(False)
         getCode.OpenInSameWindow(True)
         getCode.SetToolTip(ToolTip(""))
         codeCtrl.SetFont(defaultFont)
+        codeCtrl.SetBackgroundColour(self.backgroundColor)
+        codeCtrl.FocusLine("rgb(111, 113, 113)", "rgb(102, 147, 208)")
 
-        inputSizer.Add(nameText, flag=ALIGN_CENTER)
-        inputSizer.Add(nameCtrl, flag=SHAPED | ALL, border=10)
-        inputSizer.Add(passwordText, flag=ALIGN_CENTER)
-        inputSizer.Add(passwordCtrl, flag=SHAPED | ALL, border=10)
-        inputSizer.Add(password2Text, flag=ALIGN_CENTER)
-        inputSizer.Add(password2Ctrl, flag=SHAPED | ALL, border=10)
-        inputSizer.Add(emailText, flag=ALIGN_CENTER)
-        inputSizer.Add(emailCtrl, flag=SHAPED | ALL, border=10)
-        inputSizer.Add(getCode, flag=ALIGN_CENTER)
-        inputSizer.Add(codeCtrl, flag=SHAPED | ALL, border=10)
+        horizontalSizer.Add(getCode, flag=ALIGN_CENTER)
+        horizontalSizer.Add(codeCtrl.GetBoxSizer(), flag=SHAPED | LEFT, border=15)
+
+        self.globals["name"] = nameCtrl
+        self.globals["password"] = passwordCtrl
+        self.globals["password2"] = password2Ctrl
+        self.globals["email"] = emailCtrl
+
+        nameCtrl.SetFont(defaultFont)
+        nameCtrl.SetBackgroundColour(self.backgroundColor)
+        nameCtrl.FocusLine("rgb(111, 113, 113)", "rgb(102, 147, 208)")
+        passwordCtrl.SetFont(defaultFont)
+        passwordCtrl.SetBackgroundColour(self.backgroundColor)
+        passwordCtrl.FocusLine("rgb(111, 113, 113)", "rgb(102, 147, 208)")
+        password2Ctrl.SetFont(defaultFont)
+        password2Ctrl.SetBackgroundColour(self.backgroundColor)
+        password2Ctrl.FocusLine("rgb(111, 113, 113)", "rgb(102, 147, 208)")
+        emailCtrl.SetFont(defaultFont)
+        emailCtrl.SetBackgroundColour(self.backgroundColor)
+        emailCtrl.FocusLine("rgb(111, 113, 113)", "rgb(102, 147, 208)")
+
+        inputSizer.Add(nameCtrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | ALL, border=10)
+        inputSizer.Add(passwordCtrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | ALL, border=10)
+        inputSizer.Add(password2Ctrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | ALL, border=10)
+        inputSizer.Add(emailCtrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | ALL, border=10)
+        inputSizer.Add(horizontalSizer, flag=ALIGN_CENTER | ALL, border=10)
 
         inputPanel.SetSizer(inputSizer)
 
         inputPanel.Layout()
 
         registerButton = Button(self.panel, id=RegisterFrame.REGISTER, label="注册")
+
+        registerButton.SetFont(defaultFont)
 
         sizer.Add(titleText, flag=ALIGN_CENTER | ALL, border=10)
         sizer.Add(inputPanel, flag=EXPAND | ALL, border=20)
