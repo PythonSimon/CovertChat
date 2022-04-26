@@ -37,7 +37,7 @@ class LoginFrame(BaseFrame):
 
         inputSizer = BoxSizer(VERTICAL)
 
-        defaultFont = Font(10, SCRIPT, NORMAL, NORMAL, False)
+        defaultFont = Font(11, SCRIPT, NORMAL, NORMAL, False)
         emailCtrl = ConciseTextCtrl(inputPanel, hint="邮箱")
         passwordCtrl = ConciseTextCtrl(inputPanel, hint="密码", style=TE_PASSWORD)
 
@@ -46,8 +46,10 @@ class LoginFrame(BaseFrame):
 
         emailCtrl.SetFont(defaultFont)
         emailCtrl.SetBackgroundColour(self.backgroundColor)
+        emailCtrl.FocusLine("GREY", "rgb(32, 71, 121)")
         passwordCtrl.SetFont(defaultFont)
         passwordCtrl.SetBackgroundColour(self.backgroundColor)
+        passwordCtrl.FocusLine("GREY", "rgb(32, 71, 121)")
 
         inputSizer.Add(emailCtrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | TOP | BOTTOM | RIGHT, border=10)
         inputSizer.Add(passwordCtrl.GetBoxSizer(), flag=ALIGN_CENTER | SHAPED | TOP | BOTTOM | RIGHT, border=10)

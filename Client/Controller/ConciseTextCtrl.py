@@ -12,13 +12,21 @@ class ConciseTextCtrl(TextCtrl):
         self.sizer = BoxSizer(VERTICAL)
         self.staticLine = StaticLine()
 
+        self.focus = "BLUE"
+        self.normal = "GREY"
+
         self.SetBackgroundColour(parent.GetBackgroundColour())
         self.SetHint(hint)
 
         self.staticLine = StaticLine(parent=parent)
+        self.staticLine.SetBackgroundColour("BLUE")
+        self.staticLine.SetForegroundColour("BLUE")
 
         self.sizer.Add(self, flag=EXPAND)
         self.sizer.Add(self.staticLine, flag=EXPAND | TOP, border=height)
+
+        self.Bind(EVT_SET_FOCUS, handler=self.focusColour)
+        self.Bind(EVT_KILL_FOCUS, handler=self.normalColour)
 
     def GetBoxSizer(self):
         return self.sizer
@@ -26,16 +34,29 @@ class ConciseTextCtrl(TextCtrl):
     def GetLineColour(self):
         return self.staticLine.GetBackgroundColour()
 
-    def GetLineHeight(self):
-        return self.staticLine.GetSize()[1]
+    def GetLineSize(self):
+        return self.staticLine.GetSize()
 
     def SetLineColour(self, colour):
-        return self.staticLine.SetBackgroundColour(colour)
+        result = self.staticLine.SetForegroundColour(colour)
+        self.sizer.Layout()
+        Yield()
 
-    def SetLineHeight(self, height):
-        self.staticLine.SetSize(
-            Size(
-                self.staticLine.GetSize()[0],
-                height
-            )
-        )
+        return result
+
+    def SetLineSize(self, size):
+        self.staticLine.SetSize(size)
+
+    def FocusLine(self, normalColour, focusColour):
+        self.normal = normalColour
+        self.focus = focusColour
+
+    def focusColour(self, event: Event):
+        self.SetForegroundColour(self.focus)
+
+        event.Skip()
+
+    def normalColour(self, event: Event):
+        self.SetForegroundColour(self.normal)
+
+        event.Skip()
