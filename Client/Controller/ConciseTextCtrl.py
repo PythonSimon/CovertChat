@@ -23,7 +23,7 @@ class ConciseTextCtrl(TextCtrl):
         self.staticLine.SetForegroundColour("BLUE")
 
         self.sizer.Add(self, flag=EXPAND)
-        self.sizer.Add(self.staticLine, flag=EXPAND | TOP, border=height)
+        self.sizer.Add(self.staticLine, flag=EXPAND | TOP, border=2)
 
         self.Bind(EVT_SET_FOCUS, handler=self.focusColour)
         self.Bind(EVT_KILL_FOCUS, handler=self.normalColour)

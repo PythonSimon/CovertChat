@@ -15,7 +15,6 @@ class LoginFrame(BaseFrame):
     REGISTER = 11
     LOGIN = 12
 
-
     def __init__(self):
         super(LoginFrame, self).__init__(
             (350, 220),
